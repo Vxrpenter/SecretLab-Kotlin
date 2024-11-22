@@ -1,3 +1,8 @@
+<div align="center">
+  <img src="https://avatars.githubusercontent.com/u/64701232?s=200&v=4" width="200" height="200"/>    
+  <h1>Cedmod API Kotlin</h1>
+</div>
+     
 # Cedmod-Api-Kotlin
 A small utility class for accessing the cedmod api in kotlin projects. 
 
