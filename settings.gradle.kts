@@ -1,2 +1,2 @@
-rootProject.name = "untitled"
+rootProject.name = "Cedmod-Api-Kotlin"
 
