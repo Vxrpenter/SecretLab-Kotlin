@@ -3,7 +3,6 @@
   <h1>Cedmod API Kotlin</h1>
 </div>
      
-# Cedmod-Api-Kotlin
 A small utility class for accessing the cedmod api in kotlin projects. 
 
 > [!CAUTION]
@@ -45,3 +44,179 @@ This list contains all compatibility information, not all endpoints have been li
 | <img src="https://github.com/user-attachments/assets/639a0a7d-cdb3-43ae-9957-cb92ad322fbc"/> | `/Api/Ban/{banId}` | :x: | :white_check_mark: | :x: | 3.4.18 |
 | <img src="https://github.com/user-attachments/assets/a8e2183e-d2be-4188-9837-190b8d1dd020"/> | `/Api/Ban/Issue` | :x: | :white_check_mark: | :x: | 3.4.18 |
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/api/Ban/Query` | :x: | :white_check_mark: | :x: | 3.4.18 |
+
+## Banlist
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+| <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/Banlist/Query` | :x: | :white_check_mark: | :x: | 3.4.18 |
+| <img src="https://github.com/user-attachments/assets/639a0a7d-cdb3-43ae-9957-cb92ad322fbc"/> | `/Api/Banlist/{id}` | :x: | :white_check_mark: | :x: | 3.4.18 |
+| <img src="https://github.com/user-attachments/assets/797e682e-896c-45a6-8710-67baf0caf424"/> | `/Api/Banlist/{id}/{id}` | :x: | :white_check_mark: | :x: | 3.4.18 |
+
+## BanLog
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## Changelog
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Config
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## ExternalLookup
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## Feedback
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Instance
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## Login
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+
+## Mute
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## MuteLog
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+## Permissions
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## Player
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## QueryServer
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## ReportController
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## RoleSync
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+
+## Stafflist
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+
+
+## TeamkillLogs
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## Translation
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+
+## User
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## UserPreferences
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+
+## Warn
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## Watchlist
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+
+## Whitelists
+| Type| Api Endpoint | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| --- | --- | --- | --- | --- | --- |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
+|  |  |  |  |  |  |
