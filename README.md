@@ -13,6 +13,7 @@
 |------------|---------|-------------------------------------|
 | Gson       | 2.11.0  | https://github.com/google/gson      |
 | Kotlin     | 2.0.20  | https://github.com/JetBrains/kotlin |
+| Okhttp3    | 4.12.0  | https://github.com/square/okhttp    |
 
 # Compatibilty
 
