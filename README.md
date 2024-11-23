@@ -161,13 +161,13 @@
 
 
 ## Stafflist
-| Type                                                                                         | Api Endpoint           | Useronly Endpoint  | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint           | Non Useronly Endpoint  | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|------------------------|--------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/Stafflist/Query` | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 
 
 ## TeamkillLogs
-| Type                                                                                         | Api Endpoint                    | Useronly Endpoint  | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint                    | Non Useronly Endpoint  | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|---------------------------------|--------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/TeamkillLogs/Query`       | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/TeamkillLogs/{id}`        | :white_check_mark: | :x:            | :x:    | Not Implemented        |
@@ -175,7 +175,7 @@
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/TeamkillLogs/Rooms/{id}`  | :grey_question:    | :x:            | :x:    | Not Implemented        |
 
 ## Translation
-| Type                                                                                         | Api Endpoint                          | Useronly Endpoint  | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint                          | Non Useronly Endpoint  | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|---------------------------------------|--------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/Translation/GetTranslation`     | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/Translation/GetTranslationDate` | :white_check_mark: | :x:            | :x:    | Not Implemented        |
@@ -187,20 +187,20 @@
 
 
 ## User
-| Type                                                                                         | Api Endpoint                    | Useronly Endpoint | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint                    | Non Useronly Endpoint | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|---------------------------------|-------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/User/CheckSteam`          | :x:               | :x:            | :x:    | Not Implemented        |
 | <img src="https://github.com/user-attachments/assets/a8e2183e-d2be-4188-9837-190b8d1dd020"/> | `/Api/User/SetSteam/{steamid }` | :x:               | :x:            | :x:    | Not Implemented        |
 
 ## UserPreferences
-| Type                                                                                         | Api Endpoint               | Useronly Endpoint  | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint               | Non Useronly Endpoint  | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|----------------------------|--------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/UserPreferences/Get` | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 | <img src="https://github.com/user-attachments/assets/639a0a7d-cdb3-43ae-9957-cb92ad322fbc"/> | `/Api/UserPreferences/Set` | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 
 
 ## Warn
-| Type                                                                                         | Api Endpoint               | Useronly Endpoint  | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint               | Non Useronly Endpoint  | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|----------------------------|--------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/4067d98b-db32-4b04-b284-7999075bb687"/> | `/Api/Warn/{banId}/Reason` | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 | <img src="https://github.com/user-attachments/assets/639a0a7d-cdb3-43ae-9957-cb92ad322fbc"/> | `/Api/Warn/{banId}`        | :white_check_mark: | :x:            | :x:    | Not Implemented        |
@@ -209,7 +209,7 @@
 | <img src="https://github.com/user-attachments/assets/a8e2183e-d2be-4188-9837-190b8d1dd020"/> | `/Api/Warn/Issue`          | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 
 ## Watchlist
-| Type                                                                                         | Api Endpoint                  | Useronly Endpoint  | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint                  | Non Useronly Endpoint  | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|-------------------------------|--------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/Watchlist/Query`        | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/watchlist/{id}`         | :white_check_mark: | :x:            | :x:    | Not Implemented        |
@@ -222,7 +222,7 @@
 | <img src="https://github.com/user-attachments/assets/639a0a7d-cdb3-43ae-9957-cb92ad322fbc"/> | `/Api/Watchlist/Group/Delete` | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 
 ## Whitelists
-| Type                                                                                         | Api Endpoint            | Useronly Endpoint  | Implementation | Tested | Implemented on Version |
+| Type                                                                                         | Api Endpoint            | Non Useronly Endpoint  | Implementation | Tested | Implemented on Version |
 |----------------------------------------------------------------------------------------------|-------------------------|--------------------|----------------|--------|------------------------|
 | <img src="https://github.com/user-attachments/assets/a6e32603-d14e-4349-8858-ec892db67c39"/> | `/Api/Whitelists/Query` | :white_check_mark: | :x:            | :x:    | Not Implemented        |
 | <img src="https://github.com/user-attachments/assets/a8e2183e-d2be-4188-9837-190b8d1dd020"/> | `/Api/Whitelists/New`   | :white_check_mark: | :x:            | :x:    | Not Implemented        |
