@@ -3,9 +3,9 @@ package dev.vxrp.cedmod
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import dev.vxrp.cedmod.enums.AppealStateType
-import dev.vxrp.cedmod.enums.HandleAppealType
-import dev.vxrp.cedmod.enums.MuteType
+import dev.vxrp.cedmod.enums.cedmod.AppealStateType
+import dev.vxrp.cedmod.enums.cedmod.HandleAppealType
+import dev.vxrp.cedmod.enums.cedmod.MuteType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
