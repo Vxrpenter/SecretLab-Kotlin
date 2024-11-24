@@ -37,7 +37,7 @@
 ## [`Cedmod Api`](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Cedmod-Api-Endpoints)
 | Feature                    | Included           | Easy to use        |
 |----------------------------|--------------------|--------------------|
-| Get Basic Server Info      | :white_check_mark: | :white_check_mark: |
+| Get Basic Server Info      | :white_check_mark: | :x: |
 | Get Playercount            | :white_check_mark: | :white_check_mark: |
 | Interact with Server       | :white_check_mark: | :x:                |
 | Complex Systems            | :white_check_mark: | :x:                |
