@@ -1,5 +1,6 @@
-package dev.vxrp.data
+package dev.vxrp.secretlab.data
 
+import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
 
 @Serializable

@@ -1,8 +1,9 @@
-package dev.vxrp
-import dev.vxrp.data.ServerInfo
+package dev.vxrp.secretlab
+import dev.vxrp.secretlab.data.ServerInfo
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
+import java.util.concurrent.TimeUnit
 
 /**
  * ### Secret Lab Api Kotlin
@@ -12,8 +13,11 @@ import okhttp3.Request
  * @author Vxrpenter
  * @since SL Version 13.5.1
  */
-class SecretLab(private val apiKey: String, private val accountId: String) {
-    private val client = OkHttpClient();
+class SecretLab(private val apiKey: String, private val accountId: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
+    private val client: OkHttpClient = OkHttpClient.Builder()
+        .readTimeout(readTimeout, TimeUnit.SECONDS)
+        .writeTimeout(writeTimeout, TimeUnit.SECONDS)
+        .build()
 
     /**
      * Endpoint for getting server info
