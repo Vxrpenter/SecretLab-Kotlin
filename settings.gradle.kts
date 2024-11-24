@@ -1,2 +1,2 @@
-rootProject.name = "Cedmod-Api-Kotlin"
+rootProject.name = "SecretLab Kotlin"
 
