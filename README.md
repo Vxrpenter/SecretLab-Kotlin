@@ -52,3 +52,55 @@
 | Interact with Server       | :x:                | :x:                |
 | Complex Systems            | :x:                | :x:                |
 | Query Player Specific Info | :x:                | :x:                |
+
+## Examples
+
+Get current playercount with the SecretLabApi
+```kotlin
+package dev.vxrp
+
+import dev.vxrp.secretlab.SecretLab
+
+fun main() {
+    // The server-specific api key can be obtained by typing !api show into the server console
+    val api = "API_KEY"
+    // The account id can be optained by the same way
+    val accountId = "ACCOUNT_ID"
+    
+    // Get current online players using the SecretLab Api
+    val players = SecretLab(api, accountId).serverInfo(false, players = true)?.servers?.get(0)?.players
+}
+```
+
+Get the current playercount with the ScpListApi
+```kotlin
+package dev.vxrp
+
+import dev.vxrp.scplist.ScpList
+
+fun main() {
+    // Get players using the ScpListApi
+    val players = ScpList().serverGet("ID")?.players
+}
+```
+
+Ban a player using the cedmod api
+```kotlin
+package dev.vxrp
+
+import dev.vxrp.cedmod.Cedmod
+
+fun main() {
+    // The api key of the server. This can only be obtained after asking cedmod staff to active it for the specific instance
+    val api = "API_KEY"
+    // Url of the instance being normally https://myservername.cmod.app
+    val instanceUrl = "INSTANCE_URL"
+
+    // Issues a ban to the cedmod api. The userId is typically steam/discord id with @steam or @discord attached.
+    // The reason will be sent to the player
+    // the duration here '1' corresponds to seconds
+    // the 'true' stands for whether the ban can be appealed
+    // at last you have to provide the banlist id in the list
+    Cedmod(api, instanceUrl).banPostIssue("USER_ID", "REASON", 1, true, listOf(1111))
+}
+```
