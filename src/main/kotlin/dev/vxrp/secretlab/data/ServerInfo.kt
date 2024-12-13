@@ -2,15 +2,18 @@ package dev.vxrp.secretlab.data
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Transient
 
 @Serializable
 data class ServerInfo(
+    @Transient
+    var response: Long = 0L,
     @SerialName("Success")
     val success: Boolean = false,
     @SerialName("Cooldown")
     val cooldown: Int? = null,
     @SerialName("Servers")
-    val servers: List<Server>
+    val servers: List<Server>,
 )
 
 @Serializable
