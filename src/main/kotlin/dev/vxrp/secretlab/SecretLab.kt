@@ -44,8 +44,10 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
 
             val obj = Json.decodeFromString<ServerInfo>(response.body!!.string())
 
-            obj.response = response.receivedResponseAtMillis
+            val sent = response.sentRequestAtMillis
+            val received = response.receivedResponseAtMillis
 
+            obj.response = (received-sent)
             return obj
         }
     }
