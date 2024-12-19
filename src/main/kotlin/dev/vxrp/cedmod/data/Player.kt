@@ -26,6 +26,8 @@ data class PlayerObject(
     val deaths: Int,
     val experiencePoints: Int,
     val colaDrink: Int,
+    val medkits: Int,
+    val adrenalineShots: Int,
     val survival: Int,
     val pocketEscapes: Int,
     val roundsPlayer: Int,
