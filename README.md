@@ -19,11 +19,11 @@
 
 # Compatibilty
 
-| Api                   | Implementation Begon | Fully Implemented | link                         | Documentation Entry                                                                           |
-|-----------------------|----------------------|-------------------|------------------------------|-----------------------------------------------------------------------------------------------|
-| Secret Laboratory Api | :white_check_mark:   | :x:               | https://api.scpslgame.com/   | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/SecretLab-Api-Endpoints) |
-| Cedmod Api            | :white_check_mark:   | :x:               | `Only avaidible on instance` | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Cedmod-Api-Endpoints)    |
-| Scplist Api           | :white_check_mark:   | :x:               | https://scplist.kr/api       | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Scplist-Api-Endpoints)   |
+| Api                   | Implementation Begon | Fully Implemented  | link                         | Documentation Entry                                                                           |
+|-----------------------|----------------------|--------------------|------------------------------|-----------------------------------------------------------------------------------------------|
+| Secret Laboratory Api | :white_check_mark:   | :x:                | https://api.scpslgame.com/   | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/SecretLab-Api-Endpoints) |
+| Cedmod Api            | :white_check_mark:   | :white_check_mark: | `Only avaidible on instance` | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Cedmod-Api-Endpoints)    |
+| Scplist Api           | :white_check_mark:   | :white_check_mark: | https://scplist.kr/api       | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Scplist-Api-Endpoints)   |
 
 ## [`Secret Laboratory Standard Api`](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/SecretLab-Api-Endpoints)
 | Feature                    | Included           | Easy to use        |
