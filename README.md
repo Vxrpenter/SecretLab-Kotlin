@@ -97,10 +97,6 @@ fun main() {
     val instanceUrl = "INSTANCE_URL"
 
     // Issues a ban to the cedmod api. The userId is typically steam/discord id with @steam or @discord attached.
-    // The reason will be sent to the player
-    // the duration here '1' corresponds to seconds
-    // the 'true' stands for whether the ban can be appealed
-    // at last you have to provide the banlist id in the list
-    Cedmod(api, instanceUrl).banPostIssue("USER_ID", "REASON", 1, true, listOf(1111))
+    Cedmod(api, instanceUrl).banPostIssue(userId = "USER_ID@steam", reason = "REASON", duration = 1, appealable = true, banlists = listOf(1111))
 }
 ```
