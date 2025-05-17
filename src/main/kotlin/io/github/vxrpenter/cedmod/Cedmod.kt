@@ -29,7 +29,7 @@ import java.util.concurrent.TimeUnit
  * You can also implement it yourself and then create a pull request if needed
  *
  * @author Vxrpenter
- * @since Cedmod Version: `3.4.18`so 
+ * @since Cedmod Version: `3.4.18`so
  */
 
 
@@ -730,7 +730,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      *
      * @return a 'Player' object
      */
-    fun playerQuery(q: String, max: Int = 10, page: Int = 0, staffOnly: Boolean = false, create: Boolean = false, sortLabel: String = "id_field", sortDirection: Int? = null, activityMin: Int = 14, basicStats: Boolean = true, moderationData: Boolean = false) {
+    fun playerQuery(q: String, max: Int = 10, page: Int = 0, staffOnly: Boolean = false, create: Boolean = false, sortLabel: String = "id_field", sortDirection: Int? = null, activityMin: Int = 14, basicStats: Boolean = true, moderationData: Boolean = false): Player {
         val request = Request.Builder()
             .url("$instanceUrl/Api/Player/Query?q=$q&max=$max&page=$page&staffOnly=$staffOnly&create=$create&sortLabel=$sortLabel&activityMin=$activityMin&basicStats=$basicStats&moderationData=$moderationData")
             .header("Authorization", "Bearer $apiKey")
@@ -740,7 +740,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             val obj = Json.decodeFromString<Player>(response.body!!.string())
 
             obj.response = getResponseTime(response)
-            return
+            return obj
         }
     }
 
