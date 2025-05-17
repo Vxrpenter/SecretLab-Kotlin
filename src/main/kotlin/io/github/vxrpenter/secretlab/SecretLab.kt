@@ -1,4 +1,5 @@
 package io.github.vxrpenter.secretlab
+import io.github.vxrpenter.secretlab.exceptions.CallFailureException
 import io.github.vxrpenter.secretlab.data.ServerInfo
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
@@ -36,24 +37,23 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
      * @param online query online status?
      *
      * @return the Server info
+     * @throws CallFailureException inherited from `SecretLabException`
      */
-    fun serverInfo(lo: Boolean = true, players: Boolean = true, list: Boolean = true, info: Boolean = true, pastebin: Boolean = true, version: Boolean = true, flags: Boolean = true, nicknames: Boolean = true, online: Boolean = true): ServerInfo? {
+    fun serverInfo(lo: Boolean = true, players: Boolean = true, list: Boolean = true, info: Boolean = true, pastebin: Boolean = true, version: Boolean = true, flags: Boolean = true, nicknames: Boolean = true, online: Boolean = true): ServerInfo {
         val request = Request.Builder()
             .url("https://api.scpslgame.com/serverinfo.php?id=$accountId&key=$apiKey&lo=$lo&players=$players&list=$list&info=$info&pastebin=$pastebin&version=$version&flags=$flags&nicknames=$nicknames&online=$online")
             .build()
 
         try {
             client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return null
-
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
                 val obj = Json.decodeFromString<ServerInfo>(response.body!!.string())
 
                 obj.response = getResponseTime(response)
                 return obj
             }
         } catch (e: Exception) {
-            logger.error("Failed to get server info from api.scpslgame.com, ${e.message}")
-            return null
+            throw CallFailureException("Failed to get server info from ${request.url}", e)
         }
     }
 
@@ -61,21 +61,20 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
      * Endpoint for getting current ip
      *
      * @return current ip
+     * @throws CallFailureException inherited from `SecretLabException`
      */
-    fun ip(): String? {
+    fun ip(): String {
         val request = Request.Builder()
             .url("https://api.scpslgame.com/ip.php")
             .build()
 
         try {
             client.newCall(request).execute().use { response ->
-                if (!response.isSuccessful) return null
-
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
                 return response.body!!.string()
             }
         } catch (e: Exception) {
-            logger.error("Failed to get ip from api.scpslgame.com, ${e.message}")
-            return null
+            throw CallFailureException("Failed to get ip from ${request.url}", e)
         }
     }
 
@@ -84,5 +83,14 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
         val received = response.receivedResponseAtMillis
 
         return (received-sent)
+    }
+
+    private fun logCall(requestUrl: String, successful: Boolean, exitCode: Int, statusMessage: String) {
+        if (successful) {
+            logger.debug("Request to $requestUrl was successful with exitcode $exitCode $statusMessage")
+        } else {
+
+            logger.debug("Request to $requestUrl has failed with exitcode $exitCode $statusMessage")
+        }
     }
 }
