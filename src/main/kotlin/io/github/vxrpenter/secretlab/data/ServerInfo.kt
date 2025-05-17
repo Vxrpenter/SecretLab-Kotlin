@@ -1,4 +1,4 @@
-package dev.vxrp.secretlab.data
+package io.github.vxrpenter.secretlab.data
 
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName

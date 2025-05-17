@@ -1,7 +1,7 @@
-package dev.vxrp.scplist
+package io.github.vxrpenter.scplist
 
-import dev.vxrp.scplist.data.ScpListServers
-import dev.vxrp.scplist.data.Server
+import io.github.vxrpenter.scplist.data.ScpListServers
+import io.github.vxrpenter.scplist.data.Server
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json

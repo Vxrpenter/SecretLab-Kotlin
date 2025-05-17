@@ -1,21 +1,18 @@
-package dev.vxrp.cedmod
+package io.github.vxrpenter.cedmod
 
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
-import dev.vxrp.cedmod.data.Player
-import dev.vxrp.cedmod.enums.AppealStateType
-import dev.vxrp.cedmod.enums.HandleAppealType
-import dev.vxrp.cedmod.enums.MuteType
-import kotlinx.serialization.decodeFromString
+import io.github.vxrpenter.cedmod.data.Player
+import io.github.vxrpenter.cedmod.enums.AppealStateType
+import io.github.vxrpenter.cedmod.enums.HandleAppealType
+import io.github.vxrpenter.cedmod.enums.MuteType
 import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromJsonElement
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
-import okhttp3.ResponseBody
 import java.util.concurrent.TimeUnit
 
 /**

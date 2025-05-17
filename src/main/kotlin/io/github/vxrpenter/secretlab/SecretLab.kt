@@ -1,5 +1,5 @@
-package dev.vxrp.api.sla.secretlab
-import dev.vxrp.secretlab.data.ServerInfo
+package io.github.vxrpenter.secretlab
+import io.github.vxrpenter.secretlab.data.ServerInfo
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request

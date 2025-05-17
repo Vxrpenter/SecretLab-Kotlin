@@ -1,4 +1,4 @@
-package dev.vxrp.cedmod.data
+package io.github.vxrpenter.cedmod.data
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
