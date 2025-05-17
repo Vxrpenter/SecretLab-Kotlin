@@ -1,20 +1,16 @@
+import com.vanniktech.maven.publish.SonatypeHost
+
 plugins {
-    `maven-publish`
-    java
+    id("com.vanniktech.maven.publish") version "0.32.0"
     kotlin("jvm") version "2.0.20"
     kotlin("plugin.serialization") version "2.0.20"
 }
 
 group = "dev.vxrp"
-version = "1.0"
+version = "0.3.0"
 
 repositories {
     mavenCentral()
-}
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_22
-    targetCompatibility = JavaVersion.VERSION_22
 }
 
 val serializationVersion = "1.7.3"
@@ -29,32 +25,34 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:$logbackVersion")
 }
 
+mavenPublishing {
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
 
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            pom {
-                name = "SLA-Tools"
-                description = "A small library for accessing the SecretLab, Cedmod and Scplist api for the game Scp Secret Laboratory"
-                url = "https://github.com/Vxrpenter/SecretLab-Api-Tools"
-                licenses {
-                    license {
-                        name = "The MIT License"
-                        url = "https://github.com/Vxrpenter/SecretLab-Api-Tools/blob/main/LICENSE"
-                        distribution = "repo"
-                    }
-                }
-                developers {
-                    developer {
-                        id = "Vxrpenter"
-                    }
-                }
-                scm {
-                    connection = "scm:git:git://github.com/Vxrpenter/SecretLab-Api-Tools"
-                    developerConnection = "scm:git:ssh://github.com/Vxrpenter/SecretLab-Api-Tools"
-                    url = "https://github.com/Vxrpenter/SecretLab-Api-Tools/"
-                }
+    signAllPublications()
+
+    coordinates(group.toString(), "secretlab-kotlin")
+
+    pom {
+        name = "SecretLab Kotlin"
+        description = "A Scp-Secret-Laboratory api wrapper"
+        inceptionYear = "2025"
+        url = "https://github.com/Vxrpenter/SecretLab-Kotlin"
+        licenses {
+            license {
+                name = "MIT License"
+                url = "https://opensource.org/license/mit"
             }
+        }
+        developers {
+            developer {
+                name = "Vxrpenter"
+                url = "https://github.com/Vxrpenter"
+            }
+        }
+        scm {
+            url = "https://github.com/Vxrpenter/SecretLab-Kotlin"
+            connection = "scm:git:git://github.com/Vxrpenter/SecretLab-Kotlin.git"
+            developerConnection = "scm:git:ssh://git@github.com/Vxrpenter/SecretLab-Kotlin.git"
         }
     }
 }
