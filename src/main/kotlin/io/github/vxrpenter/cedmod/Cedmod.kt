@@ -7,12 +7,14 @@ import io.github.vxrpenter.cedmod.data.Player
 import io.github.vxrpenter.cedmod.enums.AppealStateType
 import io.github.vxrpenter.cedmod.enums.HandleAppealType
 import io.github.vxrpenter.cedmod.enums.MuteType
+import io.github.vxrpenter.cedmod.exceptions.CallFailureException
 import kotlinx.serialization.json.Json
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
+import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -34,6 +36,7 @@ import java.util.concurrent.TimeUnit
 
 
 class Cedmod(private val instanceUrl: String, private val apiKey: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
+    private val logger = LoggerFactory.getLogger(Cedmod::class.java)
     private val client: OkHttpClient = OkHttpClient.Builder()
         .readTimeout(readTimeout, TimeUnit.SECONDS)
         .writeTimeout(writeTimeout, TimeUnit.SECONDS)
@@ -50,6 +53,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param close return closed appeals when true and open appeals when false
      *
      * @return the query as JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun appealQuery(q: String, max: Int = 10, page: Int = 0, close: Boolean = false): JsonObject {
         val request = Request.Builder()
@@ -57,8 +61,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to query Appeal from ${request.url}", e)
         }
     }
 
@@ -73,8 +82,9 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param duration only applies on `DURATIONCHANGE`, can be set to 0 for all other types
      *
      * @return the response code of the action
+     * @throws CallFailureException inherited from `CedmodException`
      */
-    fun appealHandle(appealId: String, handleType: HandleAppealType, reason: String, duration: Int): Int {
+    fun appealHandle(appealId: String, handleType: HandleAppealType, reason: String, duration: Int): Int? {
         val status = when (handleType) {
             HandleAppealType.DENY -> 1
             HandleAppealType.DURATIONCHANGE -> 2
@@ -94,8 +104,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch handle Appeal to ${request.url}", e)
+        }
     }
 
     /**
@@ -109,6 +125,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param appealType type to change the appeal to
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banPatchAppealState(banId: String, logReason: String, appealType: AppealStateType): Int {
         val state = when (appealType) {
@@ -127,8 +144,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch Ban appeal to ${request.url}", e)
+        }
     }
 
     /**
@@ -141,6 +164,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param bypassableIds list of userIds that should be able to bypass
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banPatchBypassable(banId: String, logReason: String, bypassableIds: List<String>): Int {
         val jsonObject = JsonObject()
@@ -157,8 +181,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch Ban bypassable to ${request.url}", e)
+        }
     }
 
     /**
@@ -171,6 +201,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param duration new duration for the ban in seconds
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banPatchDuration(banId: String, logReason: String, duration: Int): Int {
         val json = "{\n" +
@@ -184,8 +215,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch Ban duration to ${request.url}", e)
+        }
     }
 
     /**
@@ -198,6 +235,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param banReason the new reason
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banPatchReason(banId: String, logReason: String, banReason: String): Int {
         val json = "{\n" +
@@ -211,8 +249,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch Ban reason ${request.url}", e)
+        }
     }
 
     /**
@@ -224,6 +268,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param reason the reason for the change
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banPutBan(banId: String, reason: String): Int {
         val json = "{\n" +
@@ -236,8 +281,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .put(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to put Ban to ${request.url}", e)
+        }
     }
 
     /**
@@ -252,6 +303,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param banlists list of banlists to add this ban to
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banPostIssue(userId: String, reason: String, duration: Int, appealable: Boolean, banlists: List<Int>): Int {
         val jsonObject = JsonObject()
@@ -270,8 +322,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .post(jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        val response = client.newCall(request).execute()
-        return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to post Ban issue to ${request.url}", e)
+        }
     }
 
     /**
@@ -286,6 +344,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param idOnly only query userIds
      *
      * @return the query as JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banQuery(q: String, banList: String, max: Int = 10, page: Int = 0, idOnly: Boolean = true): JsonObject? {
         val request = Request.Builder()
@@ -293,8 +352,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to query Ban from ${request.url}", e)
         }
     }
 
@@ -308,6 +372,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param max maximum object count
      *
      * @return the query as JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banlistQuery(q: String, page: Int = 0, max: Int= 0): JsonObject? {
         val url = "$instanceUrl/Api/Banlist/Query?q=$q&page=$page&max=$max".also {
@@ -320,8 +385,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to query Banlist from ${request.url}", e)
         }
     }
 
@@ -344,6 +414,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param isDefaultViewPanel should it be the default for being viewed in ban/mute managers?
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banlistPut(banlistId: String, queryServerId: String, serverWriteBans: String, serverReadBans: String, serverWriteMutes: String, serverReadMutes: String, serverWriteWarns: String, serverReadWarns: String, name: String, isMaster: Boolean = false, isDefaultPanel: Boolean = false, isDefaultViewPanel: Boolean = true): Int {
         val json = "{\n" +
@@ -366,8 +437,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .put(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to put Banlist to ${request.url}", e)
         }
     }
 
@@ -380,6 +456,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param migrateList the banlist to migrate the bans to
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banlistDelete(banlist: String, migrateList: String): Int {
         val request = Request.Builder()
@@ -387,8 +464,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to delete Banlist to ${request.url}", e)
         }
     }
 
@@ -401,6 +483,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param logReason reason of the log
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banLogPut(banId: String, logReason: String): Int {
         val json = "{\n" +
@@ -413,8 +496,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .put(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to put BanLog to ${request.url}", e)
         }
     }
 
@@ -430,6 +518,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param idOnly query only for userIds?
      *
      * @return the query as a JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun banLogQuery(q: String, banList: String, max: Int = 10, page: Int = 0, idOnly: Boolean = false): JsonObject? {
         val request = Request.Builder()
@@ -437,8 +526,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to query BanLog from ${request.url}", e)
         }
     }
 
@@ -448,6 +542,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * Endpoint: `/Api/Changelog/Get`
      *
      * @return the changelog as JsonArray
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun changelogGet(): JsonArray? {
         val request = Request.Builder()
@@ -455,8 +550,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonArray
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonArray
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to get Changelog from ${request.url}", e)
         }
     }
 
@@ -466,6 +566,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * Endpoint: `/Api/Instance/Stats`
      *
      * @return the stats as JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun instanceGetStats(): JsonObject {
         val request = Request.Builder()
@@ -473,8 +574,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to get Instance stats to ${request.url}", e)
         }
     }
 
@@ -488,6 +594,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param credit include credit?
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun feedbackPostSubmit(feedback: String, contact: Boolean = true, credit: Boolean = true): Int {
         val json = "{\n" +
@@ -502,13 +609,18 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .post(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to post Feedback submit to ${request.url}", e)
         }
     }
 
     /**
-     * Endpoint for changing mute type
+     * Endpoint for changing the mute type
      *
      * Endpoint: `/Api/Mute/{banId}/Type`
      *
@@ -517,6 +629,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param muteType the new mute type
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun mutePatchType(muteId: String, logReason: String, muteType: MuteType): Int {
         val type = when (muteType) {
@@ -535,8 +648,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch Mute type to ${request.url}", e)
         }
     }
 
@@ -550,6 +668,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param duration the new duration of the mute
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun mutePatchDuration(muteId: String, logReason: String, duration: Int): Int {
         val json = "{\n" +
@@ -563,8 +682,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch Mute duration to ${request.url}", e)
         }
     }
 
@@ -578,6 +702,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param newReason new reason for the mute
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun mutePatchReason(muteId: String, logReason: String, newReason: String): Int {
         val json = "{\n" +
@@ -591,8 +716,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .patch(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to patch Mute reason to ${request.url}", e)
         }
     }
 
@@ -609,6 +739,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param muteType which type of mute to choose
      *
      * @return the response body as a JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      * */
     fun mutePostIssue(userId: String, reason: String, duration: Int, appealable: Boolean, banlists: List<Int>, muteType: MuteType): JsonObject? {
         val type = when (muteType) {
@@ -633,8 +764,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .post(jsonObject.toString().toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to post Mute issue to ${request.url}", e)
         }
     }
 
@@ -650,6 +786,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param idOnly should only user ids be queried?
      *
      * @return the response body as JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun muteQuery(q: String, banList: String, max: Int = 10, page: Int = 0, idOnly: Boolean = false): JsonObject? {
         val request = Request.Builder()
@@ -657,8 +794,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to query mute from ${request.url}", e)
         }
     }
 
@@ -671,6 +813,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param logReason reason of the log
      *
      * @return the response code
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun muteLogPut(muteId: String, logReason: String): Int {
         val json = "{\n" +
@@ -683,8 +826,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .put(json.toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return response.code
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return response.code
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to put MuteLog to ${request.url}", e)
         }
     }
 
@@ -700,6 +848,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param idOnly query only for userIds?
      *
      * @return the query as a JsonObject
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun muteLogQuery(q: String, banList: String, max: Int = 10, page: Int = 0, idOnly: Boolean = false): JsonObject? {
         val request = Request.Builder()
@@ -707,8 +856,13 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            return JsonParser.parseString(response.body?.string()).asJsonObject
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return JsonParser.parseString(response.body?.string()).asJsonObject
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to query MuteLog from ${request.url}", e)
         }
     }
 
@@ -729,6 +883,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
      * @param moderationData should moderation data be returned?
      *
      * @return a 'Player' object
+     * @throws CallFailureException inherited from `CedmodException`
      */
     fun playerQuery(q: String, max: Int = 10, page: Int = 0, staffOnly: Boolean = false, create: Boolean = false, sortLabel: String = "id_field", sortDirection: Int? = null, activityMin: Int = 14, basicStats: Boolean = true, moderationData: Boolean = false): Player {
         val request = Request.Builder()
@@ -736,11 +891,16 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
             .header("Authorization", "Bearer $apiKey")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            val obj = Json.decodeFromString<Player>(response.body!!.string())
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                val obj = Json.decodeFromString<Player>(response.body!!.string())
 
-            obj.response = getResponseTime(response)
-            return obj
+                obj.response = getResponseTime(response)
+                return obj
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to query player from ${request.url}", e)
         }
     }
 
@@ -749,5 +909,14 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
         val received = response.receivedResponseAtMillis
 
         return (received-sent)
+    }
+
+    private fun logCall(requestUrl: String, successful: Boolean, exitCode: Int, statusMessage: String) {
+        if (successful) {
+            logger.debug("Request to $requestUrl was successful with exitcode $exitCode $statusMessage")
+        } else {
+
+            logger.debug("Request to $requestUrl has failed with exitcode $exitCode $statusMessage")
+        }
     }
 }

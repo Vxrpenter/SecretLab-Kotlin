@@ -2,6 +2,7 @@ package io.github.vxrpenter.scplist
 
 import io.github.vxrpenter.scplist.data.ScpListServers
 import io.github.vxrpenter.scplist.data.Server
+import io.github.vxrpenter.scplist.exceptions.CallFailureException
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -9,6 +10,7 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody.Companion.toRequestBody
+import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 @Serializable
@@ -31,6 +33,7 @@ private data class Info(
  * @since Sl Version `13.5.1`
  */
 class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
+    private val logger = LoggerFactory.getLogger(ScpList::class.java)
     private val client: OkHttpClient = OkHttpClient.Builder()
         .readTimeout(readTimeout, TimeUnit.SECONDS)
         .writeTimeout(writeTimeout, TimeUnit.SECONDS)
@@ -51,6 +54,7 @@ class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
      * @param sort how to sort?
      *
      * @return the ScpListServers
+     * @throws CallFailureException inherited from `ScpListException`
      */
     fun serverPost(search: String, countryFilter: List<String>, hideEmptyServer: Boolean = true, hideFullServer: Boolean = true, friendlyFire: Boolean = true, whitelist: Boolean = true, modded: Boolean = true, sort: String = "PLAYERS_DESC"): ScpListServers? {
         val data = Info(search, countryFilter, hideEmptyServer, hideFullServer, friendlyFire, whitelist, modded, sort)
@@ -60,10 +64,13 @@ class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
             .post(Json.encodeToString(data).toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
-        client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) return null
-
-            return Json.decodeFromString<ScpListServers>(response.body!!.string())
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return Json.decodeFromString<ScpListServers>(response.body!!.string())
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to post server to ${request.url}", e)
         }
     }
 
@@ -75,17 +82,30 @@ class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
      * @param serverId id of the servers
      *
      * @return the Server
+     * @throws CallFailureException inherited from `ScpListException`
      */
-    fun serverGet(serverId: String): Server? {
+    fun serverGet(serverId: String): Server {
 
         val request = Request.Builder()
             .url("https://api.scplist.kr/api/servers/$serverId")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) return null
+        try {
+            client.newCall(request).execute().use { response ->
+                logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
+                return Json.decodeFromString<Server>(response.body!!.string())
+            }
+        } catch (e: Exception) {
+            throw CallFailureException("Failed to get server from ${request.url}", e)
+        }
+    }
 
-            return Json.decodeFromString<Server>(response.body!!.string())
+    private fun logCall(requestUrl: String, successful: Boolean, exitCode: Int, statusMessage: String) {
+        if (successful) {
+            logger.debug("Request to $requestUrl was successful with exitcode $exitCode $statusMessage")
+        } else {
+
+            logger.debug("Request to $requestUrl has failed with exitcode $exitCode $statusMessage")
         }
     }
 }
