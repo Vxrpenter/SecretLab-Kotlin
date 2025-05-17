@@ -3,8 +3,6 @@
   <h1>Secret Lab Kotlin</h1>
   
   <a href="https://github.com/Vxrpenter/SecretLab-Kotlin/releases"><img src="https://img.shields.io/github/v/release/Vxrpenter/SecretLab-Kotlin?include_prereleases&logo=github&logoColor=black&logoSize=amg&labelColor=333834&sort=date&display_name=tag&style=for-the-badge&label=LATEST%20RELEASE&color=green"/></a>&nbsp;<a href="https://central.sonatype.com/artifact/io.github.vxrpenter/secretlab-kotlin"><img src="https://img.shields.io/maven-central/v/io.github.vxrpenter/secretlab-kotlin?style=for-the-badge&logo=apache&logoColor=red&logoSize=amg&labelColor=333834&color=red"/><a/>&nbsp;
-
-  [![Publish](https://github.com/Vxrpenter/SecretLab-Kotlin/actions/workflows/publish.yml/badge.svg)](https://github.com/Vxrpenter/SecretLab-Kotlin/actions/workflows/publish.yml)
 </div>
 
 > [!CAUTION]
@@ -12,7 +10,7 @@
 > Also, many of the already implemented endpoints weren't tested due to it being just too many.
 > If you conduct your own test/find out that some aren't working correctly then create an issue so it can be fixed
 
-# Implementation
+# Implementation [![Publish](https://github.com/Vxrpenter/SecretLab-Kotlin/actions/workflows/publish.yml/badge.svg)](https://github.com/Vxrpenter/SecretLab-Kotlin/actions/workflows/publish.yml)
 
 Gradle:
 ```gradle
