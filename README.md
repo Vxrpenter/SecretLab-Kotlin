@@ -70,9 +70,7 @@ Maven:
 
 Get current playercount with the SecretLabApi
 ```kotlin
-package dev.vxrp
-
-import dev.vxrp.secretlab.SecretLab
+import io.github.vxrpenter.secretlab.SecretLab
 
 fun main() {
     // The server-specific api key can be obtained by typing !api show into the server console
@@ -87,9 +85,7 @@ fun main() {
 
 Get the current playercount with the ScpListApi
 ```kotlin
-package dev.vxrp
-
-import dev.vxrp.scplist.ScpList
+import io.github.vxrpenter.scplist.ScpList
 
 fun main() {
     // Get players using the ScpListApi
@@ -99,9 +95,7 @@ fun main() {
 
 Ban a player using the cedmod api
 ```kotlin
-package dev.vxrp
-
-import dev.vxrp.cedmod.Cedmod
+import io.github.vxrpenter.cedmod.Cedmod
 
 fun main() {
     // The api key of the server. This can only be obtained after asking cedmod staff to active it for the specific instance
