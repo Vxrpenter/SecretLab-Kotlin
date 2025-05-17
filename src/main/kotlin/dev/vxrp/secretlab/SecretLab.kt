@@ -1,9 +1,10 @@
-package dev.vxrp.secretlab
+package dev.vxrp.api.sla.secretlab
 import dev.vxrp.secretlab.data.ServerInfo
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.Response
+import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
 /**
@@ -15,6 +16,7 @@ import java.util.concurrent.TimeUnit
  * @since SL Version 13.5.1
  */
 class SecretLab(private val apiKey: String, private val accountId: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
+    private val logger = LoggerFactory.getLogger(SecretLab::class.java)
     private val client: OkHttpClient = OkHttpClient.Builder()
         .readTimeout(readTimeout, TimeUnit.SECONDS)
         .writeTimeout(writeTimeout, TimeUnit.SECONDS)
@@ -40,13 +42,18 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
             .url("https://api.scpslgame.com/serverinfo.php?id=$accountId&key=$apiKey&lo=$lo&players=$players&list=$list&info=$info&pastebin=$pastebin&version=$version&flags=$flags&nicknames=$nicknames&online=$online")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) return null
+        try {
+            client.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) return null
 
-            val obj = Json.decodeFromString<ServerInfo>(response.body!!.string())
+                val obj = Json.decodeFromString<ServerInfo>(response.body!!.string())
 
-            obj.response = getResponseTime(response)
-            return obj
+                obj.response = getResponseTime(response)
+                return obj
+            }
+        } catch (e: Exception) {
+            logger.error("Failed to get server info from api.scpslgame.com, ${e.message}")
+            return null
         }
     }
 
@@ -60,10 +67,15 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
             .url("https://api.scpslgame.com/ip.php")
             .build()
 
-        client.newCall(request).execute().use { response ->
-            if (!response.isSuccessful) return null
+        try {
+            client.newCall(request).execute().use { response ->
+                if (!response.isSuccessful) return null
 
-            return response.body!!.string()
+                return response.body!!.string()
+            }
+        } catch (e: Exception) {
+            logger.error("Failed to get ip from api.scpslgame.com, ${e.message}")
+            return null
         }
     }
 
