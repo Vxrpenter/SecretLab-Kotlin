@@ -15,6 +15,7 @@
 | Kotlin                     | 2.0.20  | https://github.com/JetBrains/kotlin             |
 | Okhttp3                    | 4.12.0  | https://github.com/square/okhttp                |
 | Kotlinx Serialization Json | 1.7.3   | https://github.com/Kotlin/kotlinx.serialization |
+| Logback                    | 1.5.18  | https://logback.qos.ch/                         |
 
 
 # Compatibilty
