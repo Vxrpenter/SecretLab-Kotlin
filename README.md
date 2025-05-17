@@ -1,8 +1,10 @@
 <div align="center">
   <img src="https://www.giantbomb.com/a/uploads/scale_medium/35/359560/2960939-logo_stylized.png" width="200" height="200" alt="cedmod" title="cedmod"/>    
   <h1>Secret Lab Kotlin</h1>
-
+  
   <a href="https://github.com/Vxrpenter/SecretLab-Kotlin/releases"><img src="https://img.shields.io/github/v/release/Vxrpenter/SecretLab-Kotlin?include_prereleases&logo=github&logoColor=black&logoSize=amg&labelColor=333834&sort=date&display_name=tag&style=for-the-badge&label=LATEST%20RELEASE&color=green"/></a>&nbsp;<a href="https://central.sonatype.com/artifact/io.github.vxrpenter/secretlab-kotlin"><img src="https://img.shields.io/maven-central/v/io.github.vxrpenter/secretlab-kotlin?style=for-the-badge&logo=apache&logoColor=red&logoSize=amg&labelColor=333834&color=red"/><a/>&nbsp;
+
+  [![Publish](https://github.com/Vxrpenter/SecretLab-Kotlin/actions/workflows/publish.yml/badge.svg)](https://github.com/Vxrpenter/SecretLab-Kotlin/actions/workflows/publish.yml)
 </div>
 
 > [!CAUTION]
