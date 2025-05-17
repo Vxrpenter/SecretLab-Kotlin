@@ -12,10 +12,6 @@
 
 Gradle:
 ```gradle
-repositories {
-    mavenCentral()
-}
-
 dependencies {
   implementation("io.github.vxrpenter:secretlab-kotlin:0.3.0")
 }
