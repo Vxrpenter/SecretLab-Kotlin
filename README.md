@@ -8,15 +8,23 @@
 > Also, many of the already implemented endpoints weren't tested due to it being just too many.
 > If you conduct your own test/find out that some aren't working correctly then create an issue so it can be fixed
 
-# Dependencys
-| Dependency                 | Version | Github page                                     |
-|----------------------------|---------|-------------------------------------------------|
-| Gson                       | 2.11.0  | https://github.com/google/gson                  |
-| Kotlin                     | 2.0.20  | https://github.com/JetBrains/kotlin             |
-| Okhttp3                    | 4.12.0  | https://github.com/square/okhttp                |
-| Kotlinx Serialization Json | 1.7.3   | https://github.com/Kotlin/kotlinx.serialization |
-| Logback                    | 1.5.18  | https://logback.qos.ch/                         |
+# Implementation
 
+Gradle:
+```gradle
+dependencies {
+  implementation("io.github.vxrpenter:secretlab-kotlin:0.3.0")
+}
+```
+
+Maven:
+```xml
+<dependency>
+  <groupId>cio.github.vxrpenter</groupId>
+  <artifactId>secretlab-kotlin</artifactId>
+  <version>0.3.0</version>
+</dependency>
+```
 
 # Compatibilty
 
