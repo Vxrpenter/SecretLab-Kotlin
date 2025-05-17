@@ -24,10 +24,10 @@ dependencies {
 Maven:
 ```xml
 <dependency>
-  <groupId>cio.github.vxrpenter</groupId>
-  <artifactId>secretlab-kotlin</artifactId>
-  <version>0.3.0</version>
-</dependency>
+    <groupId>io.github.vxrpenter</groupId>
+    <artifactId>secretlab-kotlin</artifactId>
+    <version>0.3.0</version>
+</dependency
 ```
 
 # Compatibilty
