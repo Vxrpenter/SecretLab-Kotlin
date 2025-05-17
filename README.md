@@ -17,7 +17,7 @@
 Gradle:
 ```gradle
 dependencies {
-  implementation("io.github.vxrpenter:secretlab-kotlin:0.3.1")
+  implementation("io.github.vxrpenter:secretlab-kotlin:0.4.0")
 }
 ```
 
@@ -26,9 +26,11 @@ Maven:
 <dependency>
     <groupId>io.github.vxrpenter</groupId>
     <artifactId>secretlab-kotlin</artifactId>
-    <version>0.3.1</version>
+    <version>0.4.0</version>
 </dependency
 ```
+
+_Note that new version releases could take around an hour until they are successfully published to maven central_
 
 # Compatibilty
 
