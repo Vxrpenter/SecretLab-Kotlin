@@ -16,13 +16,12 @@ repositories {
 val serializationVersion = "1.7.3"
 val gsonVersion = "2.11.0"
 val okHttp3Version = "4.12.0"
-val logbackVersion = "1.5.18"
 
 dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okHttp3Version")
     implementation("com.google.code.gson:gson:$gsonVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
-    implementation("ch.qos.logback:logback-classic:$logbackVersion")
+    implementation("org.slf4j:slf4j-api:2.0.17")
 }
 
 mavenPublishing {
