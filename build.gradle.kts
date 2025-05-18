@@ -1,7 +1,18 @@
 import com.vanniktech.maven.publish.SonatypeHost
+import org.jetbrains.dokka.base.DokkaBase
+import org.jetbrains.dokka.base.DokkaBaseConfiguration
+import org.jetbrains.dokka.gradle.DokkaTask
+import java.net.URI
+
+buildscript {
+    dependencies {
+        classpath("org.jetbrains.dokka:dokka-base:2.0.0")
+    }
+}
 
 plugins {
     id("com.vanniktech.maven.publish") version "0.32.0"
+    id("org.jetbrains.dokka") version "2.0.0"
     kotlin("jvm") version "2.0.20"
     kotlin("plugin.serialization") version "2.0.20"
 }
@@ -22,6 +33,22 @@ dependencies {
     implementation("com.google.code.gson:gson:$gsonVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
     implementation("org.slf4j:slf4j-api:2.0.17")
+}
+
+tasks.getByName("dokkaHtml", DokkaTask::class) {
+    dokkaSourceSets.configureEach {
+        includes.from("packages.md")
+        jdkVersion.set(8)
+        sourceLink {
+            localDirectory.set(file("src/main/kotlin"))
+            remoteUrl.set(URI("https://github.com/Vxrpenter/SecretLab-Kotlin/tree/main/src/main/kotlin").toURL())
+            remoteLineSuffix.set("#V")
+        }
+
+        pluginConfiguration<DokkaBase, DokkaBaseConfiguration> {
+            footerMessage = "Copyright © 2025 Vxrpenter"
+        }
+    }
 }
 
 mavenPublishing {

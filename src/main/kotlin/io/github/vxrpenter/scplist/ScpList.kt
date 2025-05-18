@@ -24,14 +24,6 @@ private data class Info(
     val modded: Boolean,
     val sort: String)
 
-/**
- * ### ScpList Api Kotlin
- *
- * A small tool for accessing the `scplist.kr` api.
- *
- * @author Vxrpenter
- * @since Sl Version `13.5.1`
- */
 class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(ScpList::class.java)
     private val client: OkHttpClient = OkHttpClient.Builder()
