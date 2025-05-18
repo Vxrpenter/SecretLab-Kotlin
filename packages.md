@@ -1,7 +1,7 @@
 
 
 
-# Module SecretLab-Kotlin
+# Module SecretLab Kotlin
 
 ## Download
 
