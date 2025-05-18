@@ -17,24 +17,6 @@ import okhttp3.Response
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
-/**
- * ### Cedmod Api Kotlin
- *
- * A small tool for accessing the cedmod api without having to manually create the http requests.
- * This is not meant to be an easy implementation but just a little quality-of-life tool
- *
- * Some endpoints aren't accessible through this tool because they're user-only endpoints that can't be used by `dummy users`
- *
- * Also note that some of these endpoints have hard rate limits, so request spamming is not a good idea.
- * > If you find an endpoint that can be accessed normally but not with this tool, then create an issue,
- * and it will be implemented shortly.
- * You can also implement it yourself and then create a pull request if needed
- *
- * @author Vxrpenter
- * @since Cedmod Version: `3.4.18`so
- */
-
-
 class Cedmod(private val instanceUrl: String, private val apiKey: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(Cedmod::class.java)
     private val client: OkHttpClient = OkHttpClient.Builder()

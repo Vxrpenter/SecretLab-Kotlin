@@ -8,14 +8,6 @@ import okhttp3.Response
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
-/**
- * ### Secret Lab Api Kotlin
- *
- * Small tool for accessing/working with the official secret lab api in kotlin
- *
- * @author Vxrpenter
- * @since SL Version 13.5.1
- */
 class SecretLab(private val apiKey: String, private val accountId: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(SecretLab::class.java)
     private val client: OkHttpClient = OkHttpClient.Builder()
