@@ -25,7 +25,7 @@ Maven:
     <groupId>io.github.vxrpenter</groupId>
     <artifactId>secretlab-kotlin</artifactId>
     <version>0.4.0</version>
-</dependency
+</dependency>
 ```
 
 _Note that new version releases could take around an hour until they are successfully published to maven central_
