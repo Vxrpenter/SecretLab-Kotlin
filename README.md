@@ -3,6 +3,8 @@
   <h1>Secret Lab Kotlin</h1>
   
   <a href="https://github.com/Vxrpenter/SecretLab-Kotlin/releases"><img src="https://img.shields.io/github/v/release/Vxrpenter/SecretLab-Kotlin?include_prereleases&logo=github&logoColor=black&logoSize=amg&labelColor=333834&sort=date&display_name=tag&style=for-the-badge&label=LATEST%20RELEASE&color=green"/></a>&nbsp;<a href="https://central.sonatype.com/artifact/io.github.vxrpenter/secretlab-kotlin"><img src="https://img.shields.io/maven-central/v/io.github.vxrpenter/secretlab-kotlin?style=for-the-badge&logo=apache&logoColor=red&logoSize=amg&labelColor=333834&color=red"/><a/>&nbsp;
+  
+  <h3><a href="https://override.gitbook.io/secretlab-kotlin">Wiki</a> - <a href="https://vxrpenter.github.io/SecretLab-Kotlin/">Dokka Docs</a></h3>
 </div>
 
 > [!CAUTION]
@@ -38,7 +40,7 @@ _Note that new version releases could take around an hour until they are success
 | Cedmod Api            | :white_check_mark:   | :x:                | `Only avaidible on instance` | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Cedmod-Api-Endpoints)    |
 | Scplist Api           | :white_check_mark:   | :white_check_mark: | https://scplist.kr/api       | [existing entry](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Scplist-Api-Endpoints)   |
 
-## [`Secret Laboratory Standard Api`](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/SecretLab-Api-Endpoints)
+## [`Secret Laboratory Standard Api`](https://override.gitbook.io/secretlab-kotlin/endpoints/secretlab-api)
 | Feature                    | Included           | Easy to use        |
 |----------------------------|--------------------|--------------------|
 | Get Basic Server Info      | :white_check_mark: | :white_check_mark: |
@@ -47,7 +49,7 @@ _Note that new version releases could take around an hour until they are success
 | Complex Systems            | :x:                | :x:                |
 | Query Player Specific Info | :x:                | :x:                |
 
-## [`Cedmod Api`](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Cedmod-Api-Endpoints)
+## [`Cedmod Api`](https://override.gitbook.io/secretlab-kotlin/endpoints/cedmod-api)
 | Feature                    | Included           | Easy to use        |
 |----------------------------|--------------------|--------------------|
 | Get Basic Server Info      | :white_check_mark: | :x: |
@@ -57,7 +59,7 @@ _Note that new version releases could take around an hour until they are success
 | Query Player Specific Info | :white_check_mark: | :white_check_mark: |
 
 
-## [`Scplist Api`](https://github.com/Vxrpenter/Cedmod-Api-Kotlin/wiki/Scplist-Api-Endpoints)
+## [`Scplist Api`](https://override.gitbook.io/secretlab-kotlin/endpoints/scplist-api)
 | Feature                    | Included           | Easy to use        |
 |----------------------------|--------------------|--------------------|
 | Get Basic Server Info      | :white_check_mark: | :white_check_mark: |
