@@ -39,13 +39,15 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
         try {
             client.newCall(request).execute().use { response ->
                 logCall(request.url.toString().replace(apiKey, "keyRemovedForPrivacyReasons"), response.isSuccessful, response.code, response.message)
-                val obj = Json.decodeFromString<ServerInfo>(response.body!!.string())
+                val responseBody = response.body!!.string().replace("\"Nickname\":false", "\"Nickname\":\"Could not fetch\"")
+                val obj = Json.decodeFromString<ServerInfo>(responseBody)
 
                 obj.response = getResponseTime(response)
                 return obj
             }
-        } catch (e: Exception) {
-            throw CallFailureException("Failed to get server info from ${request.url}", e)
+        }
+        catch (e: Exception) {
+            throw CallFailureException("Failed to get server info from ${request.url.toString().replace(apiKey, "keyRemovedForPrivacyReasons")}", e)
         }
     }
 
@@ -76,6 +78,8 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
 
         return (received-sent)
     }
+
+
 
     private fun logCall(requestUrl: String, successful: Boolean, exitCode: Int, statusMessage: String) {
         if (successful) {
