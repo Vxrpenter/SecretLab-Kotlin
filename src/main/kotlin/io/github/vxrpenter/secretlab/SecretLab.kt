@@ -41,7 +41,6 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
             client.newCall(request).execute().use { response ->
                 logCall(request.url.toString().replace(apiKey, "keyRemovedForPrivacyReasons"), response.isSuccessful, response.code, response.message)
                 val responseBody = response.body!!.string().replace("\"Nickname\":false", "\"Nickname\":\"Could not fetch\"")
-                println(responseBody)
                 val obj = json.decodeFromString<ServerInfo>(responseBody)
 
                 obj.response = getResponseTime(response)
