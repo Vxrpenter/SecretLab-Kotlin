@@ -10,10 +10,12 @@ data class ServerInfo(
     var response: Long = 0L,
     @SerialName("Success")
     val success: Boolean = false,
+    @SerialName("Error")
+    val error: String? = null,
     @SerialName("Cooldown")
     val cooldown: Int? = null,
     @SerialName("Servers")
-    val servers: List<Server>,
+    val servers: List<Server>? = null,
 )
 
 @Serializable
