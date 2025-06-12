@@ -8,8 +8,17 @@ import okhttp3.Response
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
+fun main() {
+    try {
+        SecretLab("u6gaOi6Lj3DIfbef07o/MFXD", "31646").serverInfo()
+    } catch (e: CallFailureException) {
+        println(e.cause)
+    }
+}
+
 class SecretLab(private val apiKey: String, private val accountId: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(SecretLab::class.java)
+    private val json = Json { ignoreUnknownKeys = true }
     private val client: OkHttpClient = OkHttpClient.Builder()
         .readTimeout(readTimeout, TimeUnit.SECONDS)
         .writeTimeout(writeTimeout, TimeUnit.SECONDS)
@@ -40,7 +49,8 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
             client.newCall(request).execute().use { response ->
                 logCall(request.url.toString().replace(apiKey, "keyRemovedForPrivacyReasons"), response.isSuccessful, response.code, response.message)
                 val responseBody = response.body!!.string().replace("\"Nickname\":false", "\"Nickname\":\"Could not fetch\"")
-                val obj = Json.decodeFromString<ServerInfo>(responseBody)
+                println(responseBody)
+                val obj = json.decodeFromString<ServerInfo>(responseBody)
 
                 obj.response = getResponseTime(response)
                 return obj

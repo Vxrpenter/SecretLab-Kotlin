@@ -26,6 +26,7 @@ private data class Info(
 
 class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(ScpList::class.java)
+    private val json = Json { ignoreUnknownKeys = true }
     private val client: OkHttpClient = OkHttpClient.Builder()
         .readTimeout(readTimeout, TimeUnit.SECONDS)
         .writeTimeout(writeTimeout, TimeUnit.SECONDS)
@@ -53,7 +54,7 @@ class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
 
         val request = Request.Builder()
             .url("https://api.scplist.kr/api/servers")
-            .post(Json.encodeToString(data).toRequestBody("application/json".toMediaTypeOrNull()))
+            .post(json.encodeToString(data).toRequestBody("application/json".toMediaTypeOrNull()))
             .build()
 
         try {
@@ -85,7 +86,7 @@ class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
         try {
             client.newCall(request).execute().use { response ->
                 logCall(request.url.toString(), response.isSuccessful, response.code, response.message)
-                return Json.decodeFromString<Server>(response.body!!.string())
+                return json.decodeFromString<Server>(response.body!!.string())
             }
         } catch (e: Exception) {
             throw CallFailureException("Failed to get server from ${request.url}", e)
