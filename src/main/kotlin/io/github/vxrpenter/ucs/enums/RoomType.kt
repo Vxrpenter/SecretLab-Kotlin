@@ -129,6 +129,22 @@ enum class RoomType(val room: String) {
     EZ_CHECKPOINT_HALLWAY("EzCheckpointHallway");
 
     companion object {
-        fun find(value: String): RoomType? = RoomType.entries.find { it.room == value }
+        /**
+         * Finds the specified enum name from its RoomType.
+         *
+         * @param value The RoomType e.g. (Surface, EzCheckpointHallway etc.)
+         * @see io.github.vxrpenter.ucs.enums.RoomType
+         * @return the RoomType (nullable)
+         */
+        fun findEnum(value: String): RoomType? = RoomType.entries.find { it.room == value }
+
+        /**
+         * Finds the specified RoomType from its enum
+         *
+         * @param enum The enum e.g. (SURFACE, EZ_CHECKPOINT_HALLWAY etc.)
+         * @see io.github.vxrpenter.ucs.enums.RoomType
+         * @return the RoomType (nullable)
+         */
+        fun findValue(enum: RoomType): String? = RoomType.entries.find { it.name == enum.name }?.room
     }
 }

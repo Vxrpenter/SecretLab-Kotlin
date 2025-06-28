@@ -79,6 +79,22 @@ enum class RoleType(val id: Int) {
     ZOMBIE_FLAMINGO(26);
 
     companion object {
-        fun find(value: Int): RoleType? = RoleType.entries.find { it.id == value }
+        /**
+         * Finds the specified enum name from its RoleType.
+         *
+         * @param value The RoleType e.g. (AlphaFlamingo, ZombieFlamingo etc.)
+         * @see io.github.vxrpenter.ucs.enums.RoleType
+         * @return the RoleType (nullable)
+         */
+        fun findEnum(value: Int): RoleType? = RoleType.entries.find { it.id == value }
+
+        /**
+         * Finds the specified RoleType from its enum
+         *
+         * @param enum The enum e.g. (ALPHA_FLAMINGO, ZOMBIE_FLAMINGO etc.)
+         * @see io.github.vxrpenter.ucs.enums.RoleType
+         * @return the RoleType (nullable)
+         */
+        fun findValue(enum: RoleType): Int? = RoleType.entries.find { it.name == enum.name }?.id
     }
 }

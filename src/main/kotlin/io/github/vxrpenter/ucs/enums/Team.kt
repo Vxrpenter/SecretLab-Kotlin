@@ -39,6 +39,22 @@ enum class Team(val team: String) {
     OTHER_ALIVE("OtherAlive");
 
     companion object {
-        fun find(value: String): Team? = Team.entries.find { it.team == value }
+        /**
+         * Finds the specified enum name from its Team.
+         *
+         * @param value The Team e.g. (Flamingo, OtherAlive etc.)
+         * @see io.github.vxrpenter.ucs.enums.Team
+         * @return the Team (nullable)
+         */
+        fun findEnum(value: String): Team? = Team.entries.find { it.team == value }
+
+        /**
+         * Finds the specified Team from its enum
+         *
+         * @param enum The enum e.g. (FLAMINGO, OTHER_ALIVE etc.)
+         * @see io.github.vxrpenter.ucs.enums.Team
+         * @return the Team (nullable)
+         */
+        fun findValue(enum: Team): String? = Team.entries.find { it.name == enum.name }?.team
     }
 }

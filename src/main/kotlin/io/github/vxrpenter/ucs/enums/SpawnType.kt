@@ -21,24 +21,64 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class SpawnType(val spawnType: String) {
+    /**
+     * A random room inside the whole facility will be chosen.
+     */
     @SerialName("CompleteRandomSpawn")
     COMPLETE_RANDOM_SPAWN("CompleteRandomSpawn"),
+    /**
+     * The Custom role will spawn in a room in one of the given Zones
+     */
     @SerialName("ZoneSpawn")
     ZONE_SPAWN("ZoneSpawn"),
+    /**
+     * The custom role will spawn in one of the given Rooms.
+     */
     @SerialName("RoomsSpawn")
     ROOM_SPAWN("RoomsSpawn"),
+    /**
+     * The custom role will spawn in one of the given Spawn Points.
+     */
     @SerialName("SpawnPointSpawn")
     SPAWN_POINT_SPAWN("SpawnPointSpawn"),
+    /**
+     * The custom role will keep the default vanilla Role position, chosen by the game.
+     */
     @SerialName("KeepRoleSpawn")
     KEEP_ROLE_SPAWN("KeepRoleSpawn"),
+    /**
+     * The custom role won't modify the player position (where they spawned as the vanilla Role)
+     */
     @SerialName("KeepCurrentPositionSpawn")
     KEEP_CURRENT_POSITION_SPAWN("KeepCurrentPositionSpawn"),
+    /**
+     * The custom role will spawn in one of the Class-D's cells.
+     */
     @SerialName("ClassDCell")
     CLASS_D_CELL("ClassDCell"),
+    /**
+     * The custom role will be spawned in a random spawn position of one of the given Spawn Roles.
+     */
     @SerialName("RoleSpawn")
     ROLE_SPAWN("RoleSpawn");
 
     companion object {
-        fun find(value: String): SpawnType? = SpawnType.entries.find { it.spawnType == value }
+        /**
+         * Finds the specified enum name from its SpawnType.
+         *
+         * @param value The SpawnType e.g. (ClassDCell, RoleSpawn etc.)
+         * @see io.github.vxrpenter.ucs.enums.SpawnType
+         * @return the SpawnType (nullable)
+         */
+        fun findEnum(value: String): SpawnType? = SpawnType.entries.find { it.spawnType == value }
+
+        /**
+         * Finds the specified SpawnType from its enum
+         *
+         * @param enum The enum e.g. (CLASS_D_CELL, ROLE_SPAWN etc.)
+         * @see io.github.vxrpenter.ucs.enums.SpawnType
+         * @return the SpawnType (nullable)
+         */
+        fun findValue(enum: SpawnType): String? = SpawnType.entries.find { it.name == enum.name }?.spawnType
     }
 }
