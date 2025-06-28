@@ -16,15 +16,7 @@
 
 package io.github.vxrpenter.ucs.ucr.data
 
-import io.github.vxrpenter.ucs.enums.Color
-import io.github.vxrpenter.ucs.enums.CustomVanillaFlags
-import io.github.vxrpenter.ucs.enums.EffectType
-import io.github.vxrpenter.ucs.enums.ItemType
-import io.github.vxrpenter.ucs.enums.RoleType
-import io.github.vxrpenter.ucs.enums.RoomType
-import io.github.vxrpenter.ucs.enums.SpawnType
-import io.github.vxrpenter.ucs.enums.Team
-import io.github.vxrpenter.ucs.enums.ZoneType
+import io.github.vxrpenter.ucs.enums.*
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

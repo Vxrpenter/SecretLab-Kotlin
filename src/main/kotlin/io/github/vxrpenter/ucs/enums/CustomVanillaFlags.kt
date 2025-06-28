@@ -16,11 +16,6 @@
 
 package io.github.vxrpenter.ucs.enums
 
-import io.github.vxrpenter.ucs.ucr.data.CustomPermission
-import io.github.vxrpenter.ucs.ucr.data.CustomScpAnnouncer
-import io.github.vxrpenter.ucs.ucr.data.DropItemsOnDeath
-import io.github.vxrpenter.ucs.ucr.data.ItemBan
-import io.github.vxrpenter.ucs.ucr.data.LifeStealer
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
