@@ -32,6 +32,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okHttp3Version")
     implementation("com.google.code.gson:gson:$gsonVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:$serializationVersion")
+    implementation("com.charleskorn.kaml:kaml:0.82.0")
     implementation("org.slf4j:slf4j-api:2.0.17")
 }
 

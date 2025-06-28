@@ -2,7 +2,17 @@
   <dictionary name="project">
     <words>
       <w>appealable</w>
+      <w>bodyshot</w>
+      <w>chkp</w>
+      <w>classd</w>
+      <w>crossvec</w>
+      <w>frmg</w>
+      <w>logicer</w>
+      <w>overwatch</w>
+      <w>persistant</w>
       <w>scplist</w>
+      <w>scps</w>
+      <w>tcross</w>
     </words>
   </dictionary>
 </component>
