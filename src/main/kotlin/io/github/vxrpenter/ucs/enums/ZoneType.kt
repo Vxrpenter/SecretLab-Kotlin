@@ -14,9 +14,23 @@
  * Note: This is no legal advice, please read the license conditions
  */
 
-package io.github.vxrpenter.cedmod.enums
+package io.github.vxrpenter.ucs.enums
 
-enum class MuteType {
-    INTERCOM,
-    GLOBAL
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+enum class ZoneType(val zone: String) {
+    @SerialName("LightContainment")
+    LIGHT_CONTAINMENT("LightContainment"),
+    @SerialName("HeavyContainment")
+    HEAVY_CONTAINMENT("HeavyContainment"),
+    @SerialName("Entrance")
+    ENTRANCE("Entrance"),
+    @SerialName("Surface")
+    SURFACE("Surface");
+
+    companion object {
+        fun find(value: String): ZoneType? = ZoneType.entries.find { it.zone == value }
+    }
 }
