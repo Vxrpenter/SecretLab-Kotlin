@@ -16,44 +16,92 @@
 
 package io.github.vxrpenter.ucs.ucr.data
 
-import io.github.vxrpenter.ucs.enums.CustomFlags
+import io.github.vxrpenter.ucs.enums.CustomVanillaFlags
 import io.github.vxrpenter.ucs.enums.ItemType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class CustomPermission(
+    /**
+     * The type of the custom flag, this is not included in the config (transient).
+     */
     @Transient
-    val type: CustomFlags = CustomFlags.CUSTOM_PERMISSION,
+    val type: CustomVanillaFlags = CustomVanillaFlags.CUSTOM_PERMISSION,
+
+    /**
+     * The permissions that the player's with the custom role get applied.
+     *
+     * Multiple permissions can be defined by putting in multiple permissions and then splitting them with a comma.
+     *
+     * Example Usage:
+     * ```kotlin
+     * val type: CustomVanillaFlags? = "ucr.spawn, ucr.list"
+     * ```
+     */
     val permission: String
 )
 
 @Serializable
 data class CustomScpAnnouncer(
+    /**
+     * The type of the custom flag, this is not included in the config (transient).
+     */
     @Transient
-    val type: CustomFlags = CustomFlags.CUSTOM_SCP_ANNOUNCER,
+    val type: CustomVanillaFlags = CustomVanillaFlags.CUSTOM_SCP_ANNOUNCER,
+
+    /**
+     * The number of the scp which announcement will be sent.
+     */
     val name: String
 )
 
 @Serializable
 data class DropItemsOnDeath(
+    /**
+     * The type of the custom flag, this is not included in the config (transient).
+     */
     @Transient
-    val type: CustomFlags = CustomFlags.DROP_ITEM_ON_DEATH,
+    val type: CustomVanillaFlags = CustomVanillaFlags.DROP_ITEM_ON_DEATH,
+
+    /**
+     * The item which the custom role will drop on termination.
+     *
+     * @see ItemType
+     */
     val item: ItemType
 )
 
 @Serializable
 data class ItemBan(
+    /**
+     * The type of the custom flag, this is not included in the config (transient)
+     */
     @Transient
-    val type: CustomFlags = CustomFlags.ITEM_BAN,
+    val type: CustomVanillaFlags = CustomVanillaFlags.ITEM_BAN,
+
+    /**
+     * The item which the custom role cannot pick up anymore.
+     *
+     * @see ItemType
+     */
     @SerialName("item_type")
-    val itemType: String
+    val itemType: ItemType
 )
 
 @Serializable
 data class LifeStealer(
+    /**
+     * The type of the custom flag, this is not included in the config (transient)
+     */
     @Transient
-    val type: CustomFlags = CustomFlags.LIFE_STEALER,
+    val type: CustomVanillaFlags = CustomVanillaFlags.LIFE_STEALER,
+
+    /**
+     * The percentage of the damage that will be transferred to the custom role.
+     *
+     * This is applied using percentages
+     * with 0 standing for 0% and 100 for 100%.
+     */
     val percentage: Int
 )
-
