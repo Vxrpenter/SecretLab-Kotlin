@@ -20,7 +20,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class CustomFlags(val flag: String) {
+enum class CustomVanillaFlags(val flag: String) {
     @SerialName("CustomPermissions")
     CUSTOM_PERMISSION("CustomPermissions"),
     @SerialName("CustomScpAnnouncer")
@@ -49,6 +49,6 @@ enum class CustomFlags(val flag: String) {
     TUTORIAL_RAGDOLL("TutorialRagdoll");
 
     companion object {
-        fun find(value: String): CustomFlags? = CustomFlags.entries.find { it.flag == value }
+        fun find(value: String): CustomVanillaFlags? = CustomVanillaFlags.entries.find { it.flag == value }
     }
 }
