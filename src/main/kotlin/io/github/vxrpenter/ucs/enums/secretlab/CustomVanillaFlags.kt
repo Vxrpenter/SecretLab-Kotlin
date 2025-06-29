@@ -70,7 +70,7 @@ enum class CustomVanillaFlags(val flag: String) {
     LIFE_STEALER("LifeStealer"),
 
     /**
-     * Makes the custom role see other custom role's 'real' appearances and not their 'fake' ones.
+     * Makes the custom role see another custom role's 'real' appearances and not their 'fake' ones.
      */
     @SerialName("NotAffectedByAppearance")
     NOT_AFFECTED_BY_APPEARANCE("NotAffectedByAppearance"),
@@ -83,7 +83,7 @@ enum class CustomVanillaFlags(val flag: String) {
 
 
     /**
-     * Prevents the game on making a termination announcement of the custom role's death.
+     * Prevents the game from making a termination announcement of the custom role's death.
      */
     @SerialName("SilentAnnouncer")
     SILENT_ANNOUNCER("SilentAnnouncer"),
@@ -105,7 +105,7 @@ enum class CustomVanillaFlags(val flag: String) {
          * Finds the specified enum name from its flag.
          *
          * @param value The flag e.g. (SilentWalker, TutorialRagdoll etc.)
-         * @see io.github.vxrpenter.ucs.enums.CustomVanillaFlags
+         * @see io.github.vxrpenter.ucs.enums.secretlab.CustomVanillaFlags
          * @return the CustomVanillaFlag (nullable)
          */
         fun findEnum(value: String): CustomVanillaFlags? = CustomVanillaFlags.entries.find { it.flag == value }
@@ -114,7 +114,7 @@ enum class CustomVanillaFlags(val flag: String) {
          * Finds the specified flag from its enum
          *
          * @param enum The enum e.g. (SILENT_ANNOUNCER, TUTORIAL_RAGDOLL etc.)
-         * @see io.github.vxrpenter.ucs.enums.CustomVanillaFlags
+         * @see io.github.vxrpenter.ucs.enums.secretlab.CustomVanillaFlags
          * @return the CustomVanillaFlag (nullable)
          */
         fun findValue(enum: CustomVanillaFlags): String? = CustomVanillaFlags.entries.find { it.name == enum.name }?.flag

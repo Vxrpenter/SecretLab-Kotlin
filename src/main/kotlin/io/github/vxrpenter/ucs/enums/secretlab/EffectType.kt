@@ -109,7 +109,7 @@ enum class EffectType(val effect: String) {
          * Finds the specified enum name from its EffectType.
          *
          * @param value The flag e.g. (Strangled, Ghostly etc.)
-         * @see io.github.vxrpenter.ucs.enums.EffectType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.EffectType
          * @return the EffectType (nullable)
          */
         fun findEnum(value: String): EffectType? = EffectType.entries.find { it.effect == value }
@@ -118,7 +118,7 @@ enum class EffectType(val effect: String) {
          * Finds the specified EffectType from its enum
          *
          * @param enum The enum e.g. (STRANGLED, GHOSTLY etc.)
-         * @see io.github.vxrpenter.ucs.enums.EffectType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.EffectType
          * @return the EffectType (nullable)
          */
         fun findValue(enum: EffectType): String? = EffectType.entries.find { it.name == enum.name }?.effect

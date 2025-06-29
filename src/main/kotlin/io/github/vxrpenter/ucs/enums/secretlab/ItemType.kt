@@ -135,7 +135,7 @@ enum class ItemType(val id: Int) {
          * Finds the specified enum name from its ItemType.
          *
          * @param value The itemType e.g. (SpecialCoal, Tape etc.)
-         * @see io.github.vxrpenter.ucs.enums.ItemType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.ItemType
          * @return the ItemType (nullable)
          */
         fun findEnum(value: Int): ItemType? = ItemType.entries.find { it.id == value }
@@ -144,7 +144,7 @@ enum class ItemType(val id: Int) {
          * Finds the specified ItemType from its enum
          *
          * @param enum The enum e.g. (SPECIAL_COAL, TAPE etc.)
-         * @see io.github.vxrpenter.ucs.enums.ItemType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.ItemType
          * @return the ItemType (nullable)
          */
         fun findValue(enum: ItemType): Int? = ItemType.entries.find { it.name == enum.name }?.id

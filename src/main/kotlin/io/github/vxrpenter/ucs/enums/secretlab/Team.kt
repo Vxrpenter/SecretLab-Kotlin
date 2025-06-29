@@ -42,8 +42,8 @@ enum class Team(val team: String) {
         /**
          * Finds the specified enum name from its Team.
          *
-         * @param value The Team e.g. (Flamingo, OtherAlive etc.)
-         * @see io.github.vxrpenter.ucs.enums.Team
+         * @param value The Team e.g. (Flamingo, OtherAlive, etc.)
+         * @see io.github.vxrpenter.ucs.enums.secretlab.Team
          * @return the Team (nullable)
          */
         fun findEnum(value: String): Team? = Team.entries.find { it.team == value }
@@ -52,7 +52,7 @@ enum class Team(val team: String) {
          * Finds the specified Team from its enum
          *
          * @param enum The enum e.g. (FLAMINGO, OTHER_ALIVE etc.)
-         * @see io.github.vxrpenter.ucs.enums.Team
+         * @see io.github.vxrpenter.ucs.enums.secretlab.Team
          * @return the Team (nullable)
          */
         fun findValue(enum: Team): String? = Team.entries.find { it.name == enum.name }?.team

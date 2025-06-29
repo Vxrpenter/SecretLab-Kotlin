@@ -83,7 +83,7 @@ enum class RoleType(val id: Int) {
          * Finds the specified enum name from its RoleType.
          *
          * @param value The RoleType e.g. (AlphaFlamingo, ZombieFlamingo etc.)
-         * @see io.github.vxrpenter.ucs.enums.RoleType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.RoleType
          * @return the RoleType (nullable)
          */
         fun findEnum(value: Int): RoleType? = RoleType.entries.find { it.id == value }
@@ -92,7 +92,7 @@ enum class RoleType(val id: Int) {
          * Finds the specified RoleType from its enum
          *
          * @param enum The enum e.g. (ALPHA_FLAMINGO, ZOMBIE_FLAMINGO etc.)
-         * @see io.github.vxrpenter.ucs.enums.RoleType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.RoleType
          * @return the RoleType (nullable)
          */
         fun findValue(enum: RoleType): Int? = RoleType.entries.find { it.name == enum.name }?.id

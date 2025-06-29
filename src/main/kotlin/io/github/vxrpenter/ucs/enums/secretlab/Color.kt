@@ -70,8 +70,8 @@ enum class Color(val color: String) {
         /**
          * Finds the specified enum name from its Color.
          *
-         * @param value The Color e.g. (army_green, pumpkin etc.)
-         * @see io.github.vxrpenter.ucs.enums.Color
+         * @param value The Color e.g. (army_green, pumpkin, etc.)
+         * @see io.github.vxrpenter.ucs.enums.secretlab.Color
          * @return the Color (nullable)
          */
         fun findEnum(value: String): Color? = Color.entries.find { it.color == value }
@@ -80,7 +80,7 @@ enum class Color(val color: String) {
          * Finds the specified Color from its enum
          *
          * @param enum The enum e.g. (ARMY_GREEN, PUMPKIN etc.)
-         * @see io.github.vxrpenter.ucs.enums.Color
+         * @see io.github.vxrpenter.ucs.enums.secretlab.Color
          * @return the Color (nullable)
          */
         fun findValue(enum: Color): String? = Color.entries.find { it.name == enum.name }?.color

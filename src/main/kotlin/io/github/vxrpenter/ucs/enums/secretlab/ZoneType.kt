@@ -35,7 +35,7 @@ enum class ZoneType(val zone: String) {
          * Finds the specified enum name from its ZoneType.
          *
          * @param value The ZoneType e.g. (Entrance, Surface etc.)
-         * @see io.github.vxrpenter.ucs.enums.ZoneType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.ZoneType
          * @return the ZoneType (nullable)
          */
         fun findEnum(value: String): ZoneType? = ZoneType.entries.find { it.zone == value }
@@ -44,7 +44,7 @@ enum class ZoneType(val zone: String) {
          * Finds the specified ZoneType from its enum
          *
          * @param enum The enum e.g. (ENTRANCE, SURFACE etc.)
-         * @see io.github.vxrpenter.ucs.enums.ZoneType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.ZoneType
          * @return the ZoneType (nullable)
          */
         fun findValue(enum: ZoneType): String? = ZoneType.entries.find { it.name == enum.name }?.zone

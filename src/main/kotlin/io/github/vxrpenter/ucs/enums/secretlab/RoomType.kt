@@ -132,8 +132,8 @@ enum class RoomType(val room: String) {
         /**
          * Finds the specified enum name from its RoomType.
          *
-         * @param value The RoomType e.g. (Surface, EzCheckpointHallway etc.)
-         * @see io.github.vxrpenter.ucs.enums.RoomType
+         * @param value The RoomType e.g. (Surface, EzCheckpointHallway, etc.)
+         * @see io.github.vxrpenter.ucs.enums.secretlab.RoomType
          * @return the RoomType (nullable)
          */
         fun findEnum(value: String): RoomType? = RoomType.entries.find { it.room == value }
@@ -142,7 +142,7 @@ enum class RoomType(val room: String) {
          * Finds the specified RoomType from its enum
          *
          * @param enum The enum e.g. (SURFACE, EZ_CHECKPOINT_HALLWAY etc.)
-         * @see io.github.vxrpenter.ucs.enums.RoomType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.RoomType
          * @return the RoomType (nullable)
          */
         fun findValue(enum: RoomType): String? = RoomType.entries.find { it.name == enum.name }?.room

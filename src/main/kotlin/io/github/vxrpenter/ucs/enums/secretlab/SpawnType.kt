@@ -73,8 +73,8 @@ enum class SpawnType(val spawnType: String) {
         /**
          * Finds the specified enum name from its SpawnType.
          *
-         * @param value The SpawnType e.g. (ClassDCell, RoleSpawn etc.)
-         * @see io.github.vxrpenter.ucs.enums.SpawnType
+         * @param value The SpawnType e.g. (ClassDCell, RoleSpawn, etc.)
+         * @see io.github.vxrpenter.ucs.enums.secretlab.SpawnType
          * @return the SpawnType (nullable)
          */
         fun findEnum(value: String): SpawnType? = SpawnType.entries.find { it.spawnType == value }
@@ -83,7 +83,7 @@ enum class SpawnType(val spawnType: String) {
          * Finds the specified SpawnType from its enum
          *
          * @param enum The enum e.g. (CLASS_D_CELL, ROLE_SPAWN etc.)
-         * @see io.github.vxrpenter.ucs.enums.SpawnType
+         * @see io.github.vxrpenter.ucs.enums.secretlab.SpawnType
          * @return the SpawnType (nullable)
          */
         fun findValue(enum: SpawnType): String? = SpawnType.entries.find { it.name == enum.name }?.spawnType
