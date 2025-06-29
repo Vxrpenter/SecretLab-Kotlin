@@ -14,7 +14,7 @@
  * Note: This is no legal advice, please read the license conditions
  */
 
-package io.github.vxrpenter.ucs.enums
+package io.github.vxrpenter.ucs.enums.secretlab
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable

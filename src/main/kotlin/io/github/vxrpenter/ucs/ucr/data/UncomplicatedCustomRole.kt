@@ -16,7 +16,15 @@
 
 package io.github.vxrpenter.ucs.ucr.data
 
-import io.github.vxrpenter.ucs.enums.*
+import io.github.vxrpenter.ucs.enums.secretlab.Color
+import io.github.vxrpenter.ucs.enums.secretlab.CustomVanillaFlags
+import io.github.vxrpenter.ucs.enums.secretlab.EffectType
+import io.github.vxrpenter.ucs.enums.secretlab.ItemType
+import io.github.vxrpenter.ucs.enums.secretlab.RoleType
+import io.github.vxrpenter.ucs.enums.secretlab.RoomType
+import io.github.vxrpenter.ucs.enums.secretlab.SpawnType
+import io.github.vxrpenter.ucs.enums.secretlab.Team
+import io.github.vxrpenter.ucs.enums.secretlab.ZoneType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -84,7 +92,7 @@ data class UncomplicatedCustomRole(
      *
      * **The color will only be applied if `badgeName` is not null**
      *
-     * @see Color
+     * @see io.github.vxrpenter.ucs.enums.secretlab.Color
      */
     @SerialName("badge_color")
     val badgeColor: Color? = null,
@@ -92,7 +100,7 @@ data class UncomplicatedCustomRole(
     /**
      * The type of the custom role.
      *
-     * @see RoleType
+     * @see io.github.vxrpenter.ucs.enums.secretlab.RoleType
      */
     val role: RoleType,
 
@@ -100,7 +108,7 @@ data class UncomplicatedCustomRole(
      * The team the custom role will be added to.
      * Teammates cannot attack each other and are able to win/ lose together.
      *
-     * @see Team
+     * @see io.github.vxrpenter.ucs.enums.secretlab.Team
      */
     val team: Team? = null,
 
@@ -232,7 +240,7 @@ data class UncomplicatedCustomRole(
     /**
      * A list of items that are added to the custom role's inventory on spawn.
      *
-     * @see ItemType
+     * @see io.github.vxrpenter.ucs.enums.secretlab.ItemType
      */
     val inventory: List<ItemType>,
 
@@ -380,7 +388,7 @@ data class UncomplicatedCustomRoleEffect(
     /**
      * The type of the effect.
      *
-     * @see EffectType
+     * @see io.github.vxrpenter.ucs.enums.secretlab.EffectType
      */
     @SerialName("effect_type")
     val effectType: EffectType,
@@ -588,14 +596,14 @@ data class UncomplicatedCustomRoleSpawnSettings(
     /**
      * The spawn mechanism by which the custom role will be spawned with.
      *
-     * @see SpawnType
+     * @see io.github.vxrpenter.ucs.enums.secretlab.SpawnType
      */
     val spawn: SpawnType,
 
     /**
      * A list of zones the custom role can be spawned in.
      *
-     * @see ZoneType
+     * @see io.github.vxrpenter.ucs.enums.secretlab.ZoneType
      */
     @SerialName("spawn_zones")
     val spawnZone: List<ZoneType>,
@@ -603,7 +611,7 @@ data class UncomplicatedCustomRoleSpawnSettings(
     /**
      * A list of rooms the custom role can be spawned in.
      *
-     * @see RoomType
+     * @see io.github.vxrpenter.ucs.enums.secretlab.RoomType
      */
     @SerialName("spawn_rooms")
     val spawnRooms: List<RoomType>,

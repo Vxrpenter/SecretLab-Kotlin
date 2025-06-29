@@ -16,8 +16,8 @@
 
 package io.github.vxrpenter.ucs.ucr.data
 
-import io.github.vxrpenter.ucs.enums.CustomVanillaFlags
-import io.github.vxrpenter.ucs.enums.ItemType
+import io.github.vxrpenter.ucs.enums.secretlab.CustomVanillaFlags
+import io.github.vxrpenter.ucs.enums.secretlab.ItemType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
