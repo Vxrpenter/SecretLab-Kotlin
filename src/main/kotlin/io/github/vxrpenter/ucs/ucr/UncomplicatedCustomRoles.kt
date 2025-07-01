@@ -19,6 +19,7 @@ package io.github.vxrpenter.ucs.ucr
 import com.charleskorn.kaml.Yaml
 import io.github.vxrpenter.ucs.enums.PluginLoader
 import io.github.vxrpenter.ucs.exceptions.CouldNotLocateFileException
+import io.github.vxrpenter.ucs.exceptions.FolderIsNotDirectoryException
 import io.github.vxrpenter.ucs.getUncomplicatedCustomRolesConfigurationPath
 import io.github.vxrpenter.ucs.ucr.data.UncomplicatedCustomRole
 import kotlinx.serialization.encodeToString
@@ -29,11 +30,17 @@ import kotlin.io.path.createFile
 import kotlin.io.path.isDirectory
 import kotlin.io.path.writeText
 
-class UncomplicatedCustomRoles(val serverDirectory: Path) {
+/**
+ * Various methods to query and write UncomplicatedCustomRoles configuration files
+ *
+ * @param serverPath The absolute path that the server is located in, e.g. `/home/testserver/server/`
+ * @param overridePath Overrides the path found by the ConfigurationFinder
+ */
+class UncomplicatedCustomRoles(val serverPath: Path, val overridePath: Path? = null) {
     private val yaml = Yaml.default
 
-    private val folderIsNotDirectoryException = CouldNotLocateFileException("Failed to locate UncomplicatedCustomRole configuration file", Throwable("Entered path for server files is not a directory/does not exist"))
-    private val noConfigurationFileFoundException = CouldNotLocateFileException("Failed to locate UncomplicatedCustomRole configuration file", Throwable("No configuration file was found in directory"))
+    private val folderIsNotDirectoryException = FolderIsNotDirectoryException("Failed to locate UncomplicatedCustomRole configuration file", Throwable("Entered path for server files is not a directory/does not exist"))
+    private val couldNotLocationFileException = CouldNotLocateFileException("Failed to locate UncomplicatedCustomRole configuration file", Throwable("No configuration file was found in directory"))
 
     /**
      * Finds a specific UncomplicatedCustomRoles configuration file
@@ -44,7 +51,8 @@ class UncomplicatedCustomRoles(val serverDirectory: Path) {
      */
     fun getConfiguration(name: String, loader: PluginLoader): UncomplicatedCustomRole {
         // Get the filepath
-        val uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverDirectory)
+        var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
+        overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
         if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
 
         // Check files in the filepath for configuration to serialize the correct file
@@ -52,7 +60,7 @@ class UncomplicatedCustomRoles(val serverDirectory: Path) {
         uncomplicatedCustomRolesPath.toFile().walk().forEach { file -> if (file.name.replace(".yml", "") == name) currentFile = file }
 
         // Serialize the found file to return it to the user
-        if (currentFile == null) throw noConfigurationFileFoundException
+        if (currentFile == null) throw couldNotLocationFileException
         val decodedYaml = yaml.decodeFromString(UncomplicatedCustomRole.serializer(), currentFile.readText())
 
         return decodedYaml
@@ -66,7 +74,8 @@ class UncomplicatedCustomRoles(val serverDirectory: Path) {
      */
     fun getConfigurations(loader: PluginLoader): List<UncomplicatedCustomRole> {
         // Get the filepath
-        val uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverDirectory)
+        var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
+        overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
         if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
 
         //Get a list of configuration files in the folder for serialization
@@ -74,7 +83,7 @@ class UncomplicatedCustomRoles(val serverDirectory: Path) {
         uncomplicatedCustomRolesPath.toFile().walk().forEach { file -> if (file.extension == "yml") fileList.add(file) }
 
         // Check if no files were found to proceed without any errors
-        if (fileList.isEmpty()) throw noConfigurationFileFoundException
+        if (fileList.isEmpty()) throw couldNotLocationFileException
 
         // Serialize the found files to return them to the user
         val configurationList = emptyList<UncomplicatedCustomRole>().toMutableList()
@@ -92,7 +101,8 @@ class UncomplicatedCustomRoles(val serverDirectory: Path) {
      */
     fun writeConfiguration(configuration: UncomplicatedCustomRole, filename: String, loader: PluginLoader) {
         // Get the filepath
-        val uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverDirectory)
+        var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
+        overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
         if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
 
         //Get a list of configuration files in the folder for checking for existing configuration
@@ -121,7 +131,8 @@ class UncomplicatedCustomRoles(val serverDirectory: Path) {
      */
     fun writeConfigurations(configurations: HashMap<String, UncomplicatedCustomRole>, loader: PluginLoader) {
         // Get the filepath
-        val uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverDirectory)
+        var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
+        overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
         if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
 
         //Get a list of configuration files in the folder for checking for existing configuration
