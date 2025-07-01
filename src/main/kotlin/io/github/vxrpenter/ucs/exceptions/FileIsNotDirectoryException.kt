@@ -16,4 +16,4 @@
 
 package io.github.vxrpenter.ucs.exceptions
 
-class FolderIsNotDirectoryException(message: String, cause: Throwable? = null) : UncomplicatedCustomServerException(message, cause)
+class FileIsNotDirectoryException(message: String, cause: Throwable? = null) : UncomplicatedCustomServerException(message, cause)

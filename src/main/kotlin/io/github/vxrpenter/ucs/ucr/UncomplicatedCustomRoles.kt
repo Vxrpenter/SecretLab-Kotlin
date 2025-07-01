@@ -19,7 +19,7 @@ package io.github.vxrpenter.ucs.ucr
 import com.charleskorn.kaml.Yaml
 import io.github.vxrpenter.ucs.enums.PluginLoader
 import io.github.vxrpenter.ucs.exceptions.CouldNotLocateFileException
-import io.github.vxrpenter.ucs.exceptions.FolderIsNotDirectoryException
+import io.github.vxrpenter.ucs.exceptions.FileIsNotDirectoryException
 import io.github.vxrpenter.ucs.getUncomplicatedCustomRolesConfigurationPath
 import io.github.vxrpenter.ucs.ucr.data.UncomplicatedCustomRole
 import kotlinx.serialization.encodeToString
@@ -39,7 +39,7 @@ import kotlin.io.path.writeText
 class UncomplicatedCustomRoles(val serverPath: Path, val overridePath: Path? = null) {
     private val yaml = Yaml.default
 
-    private val folderIsNotDirectoryException = FolderIsNotDirectoryException("Failed to locate UncomplicatedCustomRole configuration file", Throwable("Entered path for server files is not a directory/does not exist"))
+    private val fileIsNotDirectoryException = FileIsNotDirectoryException("Failed to locate UncomplicatedCustomRole configuration file", Throwable("Entered path for server files is not a directory/does not exist"))
     private val couldNotLocationFileException = CouldNotLocateFileException("Failed to locate UncomplicatedCustomRole configuration file", Throwable("No configuration file was found in directory"))
 
     /**
@@ -53,7 +53,7 @@ class UncomplicatedCustomRoles(val serverPath: Path, val overridePath: Path? = n
         // Get the filepath
         var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
         overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
-        if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
+        if (!uncomplicatedCustomRolesPath.isDirectory()) throw fileIsNotDirectoryException
 
         // Check files in the filepath for configuration to serialize the correct file
         var currentFile: File? = null
@@ -76,7 +76,7 @@ class UncomplicatedCustomRoles(val serverPath: Path, val overridePath: Path? = n
         // Get the filepath
         var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
         overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
-        if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
+        if (!uncomplicatedCustomRolesPath.isDirectory()) throw fileIsNotDirectoryException
 
         //Get a list of configuration files in the folder for serialization
         val fileList = emptyList<File>().toMutableList()
@@ -103,7 +103,7 @@ class UncomplicatedCustomRoles(val serverPath: Path, val overridePath: Path? = n
         // Get the filepath
         var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
         overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
-        if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
+        if (!uncomplicatedCustomRolesPath.isDirectory()) throw fileIsNotDirectoryException
 
         //Get a list of configuration files in the folder for checking for existing configuration
         val fileList = emptyList<File>().toMutableList()
@@ -133,7 +133,7 @@ class UncomplicatedCustomRoles(val serverPath: Path, val overridePath: Path? = n
         // Get the filepath
         var uncomplicatedCustomRolesPath = getUncomplicatedCustomRolesConfigurationPath(loader, serverPath)
         overridePath?.let { uncomplicatedCustomRolesPath = overridePath }
-        if (!uncomplicatedCustomRolesPath.isDirectory()) throw folderIsNotDirectoryException
+        if (!uncomplicatedCustomRolesPath.isDirectory()) throw fileIsNotDirectoryException
 
         //Get a list of configuration files in the folder for checking for existing configuration
         val fileList = emptyList<File>().toMutableList()
