@@ -25,6 +25,7 @@ import io.github.vxrpenter.ucs.enums.secretlab.RoomType
 import io.github.vxrpenter.ucs.enums.secretlab.SpawnType
 import io.github.vxrpenter.ucs.enums.secretlab.Team
 import io.github.vxrpenter.ucs.enums.secretlab.ZoneType
+import io.github.vxrpenter.ucs.uct.enum.Priority
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -38,6 +39,34 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class UncomplicatedCustomRole(
+
+    @SerialName("max_players")
+    //
+    // THIS IS PART OF THE UNCOMPLICATEDCUSTOMTEAMS SERIALIZATION, SEE MORE IN ./ucs/uct/data/UncomplicatedCustomTeam.kt
+    //
+    /**
+     * This is part of the UncomplicatedCustomTeams Serializer, look at the Serializer to learn more.
+     * The value will be null when querying normal UCR configurations.
+     *
+     * THe maximum number of members on the team
+     *
+     * @see io.github.vxrpenter.ucs.uct.data.UncomplicatedCustomTeam
+     */
+    val maxPlayers: Int? = null,
+
+    /**
+     * This is part of the UncomplicatedCustomTeams Serializer, look at the Serializer to learn more.
+     * The value will be null when querying normal UCR configurations.
+     *
+     * The priority is that this team will be spawned at
+     *
+     * @see Priority
+     * @see io.github.vxrpenter.ucs.uct.data.UncomplicatedCustomTeam
+     */
+    val priority: Priority? = null,
+    //
+    // THIS IS PART OF THE UNCOMPLICATEDCUSTOMTEAMS SERIALIZATION, SEE MORE IN ./ucs/uct/data/UncomplicatedCustomTeam.kt
+    //
     /**
      * The role's unique identification number. Only a single number can correlate to a single custom role!
      */
