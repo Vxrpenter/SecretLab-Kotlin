@@ -17,54 +17,45 @@
 package io.github.vxrpenter.ucs
 
 import io.github.vxrpenter.ucs.enums.PluginLoader
+import io.github.vxrpenter.ucs.exceptions.NoConfigurationPathFound
+import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItem
+import io.github.vxrpenter.ucs.ucr.data.UncomplicatedCustomRole
+import io.github.vxrpenter.ucs.uct.data.UncomplicatedCustomTeam
 import java.nio.file.Path
 import kotlin.io.path.Path
 
 /**
- * Locates the configuration file(s) of UncomplicatedCustomRoles plugin and returns them for
- * usage
+ * Locates the configuration file(s) of UncomplicatedCustomServer plugins
  *
  * Example Usage:
  * ```kotlin
- * val encodedJsonString = getUncomplicatedCustomRolesConfigurationPath(PluginLoader.EXILED, serverPath)
+ * val path = getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
  * ```
  *
  * @param loader The loader of the plugin, deciding the exact location in the server files
  * @param serverPath The directory where the server is location e.g. `/home/serverUser/server/`
- * @return The Path of the configuration files
+ * @return T as the entered object
  */
-fun getUncomplicatedCustomRolesConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
-    val uncomplicatedCustomRolesLabApiLocation = ""
-    val uncomplicatedCustomRolesExiledLocation = ".config/EXILED/Configs/UncomplicatedCustomRoles"
+inline fun <reified T> getUncomplicatedCustomServerConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
+    val exiledConfigPath = ".config/EXILED/Configs"
+    val labApiConfigPath = ""
 
-        return when(loader) {
-            PluginLoader.EXILED -> Path("$serverPath$uncomplicatedCustomRolesExiledLocation")
-
-            PluginLoader.LAB_API -> Path("$serverPath$uncomplicatedCustomRolesLabApiLocation")
+    var path = Path("")
+    when(loader) {
+        PluginLoader.EXILED -> {
+            if (UncomplicatedCustomRole is T) path = Path("$exiledConfigPath/UncomplicatedCustomRoles")
+            if (UncomplicatedCustomTeam is T) path = Path("$exiledConfigPath/UncomplicatedCustomTeams")
+            if (UncomplicatedCustomItem is T) path = Path("$exiledConfigPath/UncomplicatedCustomItems")
         }
-}
-
-/**
- * Locates the configuration file(s) of UncomplicatedCustomTeams plugin and returns them for
- * usage
- *
- * Example Usage:
- * ```kotlin
- * val encodedJsonString = getUncomplicatedCustomTeamsConfigurationPath(PluginLoader.EXILED, serverPath)
- * ```
- *
- * @param loader The loader of the plugin, deciding the exact location in the server files
- * @param serverPath The directory where the server is location e.g. `/home/serverUser/server/`
- * @return The Path of the configuration files
- */
-fun getUncomplicatedCustomTeamsConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
-    val uncomplicatedCustomTeamsLabApiLocation = ""
-    val uncomplicatedCustomTeamsExiledLocation = ".config/EXILED/Configs/UncomplicatedCustomTeams"
-
-    return when(loader) {
-        PluginLoader.EXILED -> Path("$serverPath$uncomplicatedCustomTeamsExiledLocation")
-
-        PluginLoader.LAB_API -> Path("$serverPath$uncomplicatedCustomTeamsLabApiLocation")
+        PluginLoader.LAB_API -> {
+            if (UncomplicatedCustomRole is T) path = Path("$labApiConfigPath/UncomplicatedCustomRoles")
+            if (UncomplicatedCustomTeam is T) path = Path("$labApiConfigPath/UncomplicatedCustomTeams")
+            if (UncomplicatedCustomItem is T) path = Path("$labApiConfigPath/UncomplicatedCustomItems")
+        }
     }
+
+    path.root?.let { return path }
+    throw NoConfigurationPathFound("Failed to locate configuration file(s)",
+        Throwable("Wrong type has been inferred, available types are <UncomplicatedCustomRole>, <UncomplicatedCustomTeam> or <UncomplicatedCustomItem> "))
 }
 
