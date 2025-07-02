@@ -30,17 +30,17 @@ import kotlin.io.path.Path
  * ```
  *
  * @param loader The loader of the plugin, deciding the exact location in the server files
- * @param serverDirectory The directory where the server is location e.g. `/home/serverUser/server/`
+ * @param serverPath The directory where the server is location e.g. `/home/serverUser/server/`
  * @return The Path of the configuration files
  */
-fun getUncomplicatedCustomRolesConfigurationPath(loader: PluginLoader, serverDirectory: Path): Path {
+fun getUncomplicatedCustomRolesConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
     val uncomplicatedCustomRolesLabApiLocation = ""
     val uncomplicatedCustomRolesExiledLocation = ".config/EXILED/Configs/UncomplicatedCustomRoles"
 
     return when(loader) {
-        PluginLoader.EXILED -> Path("$serverDirectory$uncomplicatedCustomRolesExiledLocation")
+        PluginLoader.EXILED -> Path("$serverPath$uncomplicatedCustomRolesExiledLocation")
 
-        PluginLoader.LAB_API -> Path("$serverDirectory$uncomplicatedCustomRolesLabApiLocation")
+        PluginLoader.LAB_API -> Path("$serverPath$uncomplicatedCustomRolesLabApiLocation")
     }
 }
 

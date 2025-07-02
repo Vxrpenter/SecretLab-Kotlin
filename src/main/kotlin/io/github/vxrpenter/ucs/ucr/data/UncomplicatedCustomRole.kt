@@ -17,7 +17,7 @@
 package io.github.vxrpenter.ucs.ucr.data
 
 import io.github.vxrpenter.ucs.enums.secretlab.Color
-import io.github.vxrpenter.ucs.enums.secretlab.CustomVanillaFlags
+import io.github.vxrpenter.ucs.ucr.enums.CustomVanillaFlags
 import io.github.vxrpenter.ucs.enums.secretlab.EffectType
 import io.github.vxrpenter.ucs.enums.secretlab.ItemType
 import io.github.vxrpenter.ucs.enums.secretlab.RoleType
