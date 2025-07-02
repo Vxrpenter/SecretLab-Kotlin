@@ -35,6 +35,14 @@ import kotlinx.serialization.Serializable
  */
 @Serializable
 data class UncomplicatedCustomTeam(
+    val teams: List<UncomplicatedCustomTeamTeam>
+)
+
+/**
+ * Actual team data class
+ */
+@Serializable
+data class UncomplicatedCustomTeamTeam(
     /**
      * The team's unique identification number. Only a single number can correlate to a single custom team!
      */
