@@ -19,10 +19,20 @@ package io.github.vxrpenter.ucs.uct.enum
 import kotlinx.serialization.SerialName
 
 enum class SpawnWave(val wave: String) {
+    @SerialName("AfterWarhead")
+    AFTER_WARHEAD("AfterWarhead"),
+    @SerialName("AfterDecontamination")
+    AFTER_DECONTAMINATION("AfterDecontamination"),
+    @SerialName("UsedItem")
+    USED_ITEM("UsedItem"),
+    @SerialName("RoundStarted")
+    ROUND_STARTED("RoundStarted"),
     @SerialName("NtfWave")
     NTF_WAVE("NtfWave"),
     @SerialName("ChaosWave")
-    CHAOS_WAVE("ChaosWave");
+    CHAOS_WAVE("ChaosWave"),
+    @SerialName("ScpDeath")
+    SCP_DEATH("ScpDeath");
 
     companion object {
         /**
