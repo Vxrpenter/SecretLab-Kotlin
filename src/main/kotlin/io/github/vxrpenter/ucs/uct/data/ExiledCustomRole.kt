@@ -20,10 +20,25 @@ import io.github.vxrpenter.ucs.uct.enum.Priority
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * This data class contains a small Serializer for the ExiledCustomRole used in UncomplicatedCustomTeam's.
+ *
+ * @since 0.5.0
+ * @author Vxrpenter
+ */
 @Serializable
 data class ExiledCustomRole(
+    /**
+     * The maximum number of players the custom team can have.
+     */
     @SerialName("max_players")
     val maxPlayers: Int,
+    /**
+     * The priority at that this team spawn's with.
+     */
     val priority: Priority,
+    /**
+     * The id of the custom team.
+     */
     val id: String,
 )
