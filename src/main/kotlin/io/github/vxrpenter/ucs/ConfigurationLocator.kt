@@ -26,7 +26,7 @@ import kotlin.io.path.Path
  *
  * Example Usage:
  * ```kotlin
- * val encodedJsonString = getUncomplicatedCustomRolesContent(PluginLoader.EXILED, serverDirectory)
+ * val encodedJsonString = getUncomplicatedCustomRolesConfigurationPath(PluginLoader.EXILED, serverPath)
  * ```
  *
  * @param loader The loader of the plugin, deciding the exact location in the server files
@@ -37,10 +37,34 @@ fun getUncomplicatedCustomRolesConfigurationPath(loader: PluginLoader, serverPat
     val uncomplicatedCustomRolesLabApiLocation = ""
     val uncomplicatedCustomRolesExiledLocation = ".config/EXILED/Configs/UncomplicatedCustomRoles"
 
-    return when(loader) {
-        PluginLoader.EXILED -> Path("$serverPath$uncomplicatedCustomRolesExiledLocation")
+        return when(loader) {
+            PluginLoader.EXILED -> Path("$serverPath$uncomplicatedCustomRolesExiledLocation")
 
-        PluginLoader.LAB_API -> Path("$serverPath$uncomplicatedCustomRolesLabApiLocation")
+            PluginLoader.LAB_API -> Path("$serverPath$uncomplicatedCustomRolesLabApiLocation")
+        }
+}
+
+/**
+ * Locates the configuration file(s) of UncomplicatedCustomTeams plugin and returns them for
+ * usage
+ *
+ * Example Usage:
+ * ```kotlin
+ * val encodedJsonString = getUncomplicatedCustomTeamsConfigurationPath(PluginLoader.EXILED, serverPath)
+ * ```
+ *
+ * @param loader The loader of the plugin, deciding the exact location in the server files
+ * @param serverPath The directory where the server is location e.g. `/home/serverUser/server/`
+ * @return The Path of the configuration files
+ */
+fun getUncomplicatedCustomTeamsConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
+    val uncomplicatedCustomTeamsLabApiLocation = ""
+    val uncomplicatedCustomTeamsExiledLocation = ".config/EXILED/Configs/UncomplicatedCustomTeams"
+
+    return when(loader) {
+        PluginLoader.EXILED -> Path("$serverPath$uncomplicatedCustomTeamsExiledLocation")
+
+        PluginLoader.LAB_API -> Path("$serverPath$uncomplicatedCustomTeamsLabApiLocation")
     }
 }
 
