@@ -21,10 +21,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class ItemType(val id: Int) {
-    // UncomplicatedCustomItems
-    @SerialName("Normal")
-    NORMAL(-2),
-    // UncomplicatedCustomItems
     @SerialName("None")
     NONE(-1),
     @SerialName("KeycardJanitor")
@@ -135,20 +131,25 @@ enum class ItemType(val id: Int) {
     SPECIAL_COAL(57),
     @SerialName("Tape")
     TAPE(58),
+    // Additional Items for UncomplicatedCustomItems (Exiled and LabAPI)
+    @SerialName("Normal")
+    NORMAL(999),
     @SerialName("DebugRagdollMover")
-    DEBUG_RAGDOLL_MOVER(59),
+    DEBUG_RAGDOLL_MOVER(999),
     @SerialName("SurfaceAccessPass")
-    SURFACE_ACCESS_PASS(60),
+    SURFACE_ACCESS_PASS(999),
     @SerialName("GunSCP127")
-    GUN_SCP127(61),
+    GUN_SCP127(999),
     @SerialName("KeycardCustomTaskForce")
-    KEYCARD_CUSTOM_TASK_FORCE(62),
+    KEYCARD_CUSTOM_TASK_FORCE(999),
     @SerialName("KeycardCustomSite02")
-    KEYCARD_CUSTOM_SITE_O2(63),
+    KEYCARD_CUSTOM_SITE_O2(999),
     @SerialName("KeycardCustomManagement")
-    KEYCARD_CUSTOM_MANAGEMENT(64),
+    KEYCARD_CUSTOM_MANAGEMENT(999),
     @SerialName("KeycardCustomMetalCase")
-    KEYCARD_CUSTOM_METAL_CASE(65);
+    KEYCARD_CUSTOM_METAL_CASE(999),
+    @SerialName("GunCom18")
+    GUN_COM18_LOWER(999);
 
     companion object {
         /**

@@ -26,15 +26,15 @@ data class Vector3(
     /**
      * The vectors x coordinate.
      */
-    val x: Int,
+    val x: Double,
 
     /**
      * The vectors y coordinate.
      */
-    val y: Int,
+    val y: Double,
 
     /**
      * The vectors z coordinate.
      */
-    val z: Int
+    val z: Double
 )
