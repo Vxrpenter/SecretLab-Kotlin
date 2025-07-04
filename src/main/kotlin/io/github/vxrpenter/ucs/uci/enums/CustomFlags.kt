@@ -16,7 +16,6 @@
 
 package io.github.vxrpenter.ucs.uci.enums
 
-import io.github.vxrpenter.ucs.enums.secretlab.Color
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 

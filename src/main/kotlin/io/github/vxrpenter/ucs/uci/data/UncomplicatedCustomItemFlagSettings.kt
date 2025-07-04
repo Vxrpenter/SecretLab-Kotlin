@@ -16,11 +16,7 @@
 
 package io.github.vxrpenter.ucs.uci.data
 
-import io.github.vxrpenter.ucs.enums.secretlab.EffectType
-import io.github.vxrpenter.ucs.enums.secretlab.ItemType
-import io.github.vxrpenter.ucs.enums.secretlab.RoleSpawnFlags
-import io.github.vxrpenter.ucs.enums.secretlab.RoleType
-import io.github.vxrpenter.ucs.enums.secretlab.Scp914KnobSetting
+import io.github.vxrpenter.ucs.enums.secretlab.*
 import io.github.vxrpenter.ucs.uci.enums.EffectEvent
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
