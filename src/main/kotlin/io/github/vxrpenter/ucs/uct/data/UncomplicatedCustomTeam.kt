@@ -16,6 +16,7 @@
 
 package io.github.vxrpenter.ucs.uct.data
 
+import io.github.vxrpenter.ucs.data.Vector3
 import io.github.vxrpenter.ucs.enums.secretlab.ItemType
 import io.github.vxrpenter.ucs.enums.secretlab.RoleType
 import io.github.vxrpenter.ucs.enums.secretlab.Team
@@ -149,10 +150,10 @@ data class UncomplicatedCustomTeamSpawnConditions(
     /**
      * The custom team's spawn position. It consists of a normal vector with `x`,`y` and `z` coordinates.
      *
-     * @see UncomplicatedCustomTeamSpawnPosition
+     * @see Vector3
      */
     @SerialName("spawn_position")
-    val spawnPosition: UncomplicatedCustomTeamSpawnPosition,
+    val spawnPosition: Vector3,
     /**
      * The item that has to be used to spawn the custom team.
      */
@@ -180,25 +181,4 @@ data class UncomplicatedCustomTeamSpawnConditions(
      * Setting a SpawnDelay greater than 0 will not work when using NtfWave or ChaosWave!
      */
     val spawnDelay: Float,
-)
-
-/**
- * Defines the spawn position of the custom team.
- */
-@Serializable
-data class UncomplicatedCustomTeamSpawnPosition(
-    /**
-     * The vectors x coordinate.
-     */
-    val x: Int,
-
-    /**
-     * The vectors y coordinate.
-     */
-    val y: Int,
-
-    /**
-     * The vectors z coordinate.
-     */
-    val z: Int
 )

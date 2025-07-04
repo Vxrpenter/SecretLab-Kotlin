@@ -20,6 +20,8 @@ import com.charleskorn.kaml.Yaml
 import io.github.vxrpenter.ucs.enums.PluginLoader
 import io.github.vxrpenter.ucs.exceptions.CouldNotLocateFileException
 import io.github.vxrpenter.ucs.exceptions.FileIsNotDirectoryException
+import io.github.vxrpenter.ucs.uci.UncomplicatedCustomItems
+import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItem
 import io.github.vxrpenter.ucs.ucr.data.UncomplicatedCustomRole
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -56,7 +58,12 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
 
         // Serialize the found file to return it to the user
         if (currentFile == null) throw CouldNotLocateFileException("Failed to locate configuration file(s)", Throwable("No configuration file found in directory"))
-        val decodedYaml = Yaml.default.decodeFromString<T>(currentFile.readText())
+        var decodedYaml = Yaml.default.decodeFromString<T>(currentFile.readText())
+
+        if (UncomplicatedCustomItem is T) {
+            val yaml = decodedYaml as UncomplicatedCustomItem
+            decodedYaml = UncomplicatedCustomItems().toSplittetData(yaml.item, yaml.customItemType, yaml.customData) as T
+        }
 
         return decodedYaml
     }
@@ -87,7 +94,16 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
 
         // Serialize the found files to return them to the user
         val configurationList = emptyList<T>().toMutableList()
-        for (file in fileList) configurationList.add(Yaml.default.decodeFromString<T>(file.readText()))
+        for (file in fileList) {
+            var decodedYaml = Yaml.default.decodeFromString<T>(file.readText())
+
+            if (UncomplicatedCustomItem is T) {
+                val yaml = decodedYaml as UncomplicatedCustomItem
+                decodedYaml = UncomplicatedCustomItems().toSplittetData(yaml.item, yaml.customItemType, yaml.customData) as T
+                continue
+            }
+            configurationList.add(decodedYaml)
+        }
 
         return configurationList.toList()
     }

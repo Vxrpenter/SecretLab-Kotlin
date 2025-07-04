@@ -16,6 +16,7 @@
 
 package io.github.vxrpenter.ucs.ucr.data
 
+import io.github.vxrpenter.ucs.data.Vector3
 import io.github.vxrpenter.ucs.enums.secretlab.Color
 import io.github.vxrpenter.ucs.ucr.enums.CustomVanillaFlags
 import io.github.vxrpenter.ucs.enums.secretlab.EffectType
@@ -228,9 +229,9 @@ data class UncomplicatedCustomRole(
     /**
      * The custom role's scale configuration. It consists of a normal vector with `x`,`y` and `z` coordinates.
      *
-     * @see UncomplicatedCustomRoleScale
+     * @see Vector3
      */
-    val scale: UncomplicatedCustomRoleScale,
+    val scale: Vector3,
 
     /**
      * The broadcast message which gets displayed when the custom role is spawned.
@@ -469,27 +470,6 @@ data class UncomplicatedCustomRoleStamina(
      * Whether the stamina does not run out or if it does.
      */
     val infinite: Boolean
-)
-
-/**
- * Defines the scale of a custom role.
- */
-@Serializable
-data class UncomplicatedCustomRoleScale(
-    /**
-     * The vectors x coordinate.
-     */
-    val x: Int,
-
-    /**
-     * The vectors y coordinate.
-     */
-    val y: Int,
-
-    /**
-     * The vectors z coordinate.
-     */
-    val z: Int
 )
 
 /**
