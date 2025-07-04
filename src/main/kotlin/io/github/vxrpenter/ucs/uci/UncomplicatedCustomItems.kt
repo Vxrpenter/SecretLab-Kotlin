@@ -17,7 +17,7 @@
 package io.github.vxrpenter.ucs.uci
 
 import com.charleskorn.kaml.Yaml
-import io.github.vxrpenter.ucs.enums.PluginLoader
+import com.charleskorn.kaml.YamlConfiguration
 import io.github.vxrpenter.ucs.enums.secretlab.ItemType
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItem
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItemData
@@ -43,47 +43,53 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 
 class UncomplicatedCustomItems {
-    inline fun <reified T> customUCIDecoder(yaml: String): T = Yaml.default.decodeFromString<T>(yaml)
+    private val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
+    inline fun <reified T> customUCIDecoder(yaml: String): T = Yaml(configuration = YamlConfiguration(strictMode = false)).decodeFromString<T>(yaml)
 
-    fun toSplittetData(defaultItemType: ItemType, itemType: CustomItemType, customData: UncomplicatedCustomItemData): Any? {
-        val yaml = Yaml.default.encodeToString<UncomplicatedCustomItemData>(customData)
+    fun toSplittetData(defaultItemType: ItemType, itemType: CustomItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
+        val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData)
 
-        return when(itemType) {
-            CustomItemType.ITEM -> customUCIDecoder<UCICustomItemData>(yaml)
-            CustomItemType.KEYCARD -> customUCIDecoder<UCICustomKeycardData>(yaml)
-            CustomItemType.ARMOR -> customUCIDecoder<UCICustomArmorData>(yaml)
-            CustomItemType.WEAPON -> customUCIDecoder<UCICustomWeaponData>(yaml)
-            CustomItemType.MEDKIT -> customUCIDecoder<UCICustomMedkitData>(yaml)
-            CustomItemType.PAINKILLERS -> customUCIDecoder<UCICustomPainkillersData>(yaml)
-            CustomItemType.JAILBIRD -> customUCIDecoder<UCICustomJailbirdData>(yaml)
-            CustomItemType.EXPLOSIVE_GRENADE -> customUCIDecoder<UCICustomExplosiveGrenadeData>(yaml)
-            CustomItemType.FLASH_GRENADE -> customUCIDecoder<UCICustomFlashGrenadeData>(yaml)
-            CustomItemType.ADRENALINE -> customUCIDecoder<UCICustomAdrenalineData>(yaml)
-            CustomItemType.SCP_ITEM -> retrieveCustomScpItemData(defaultItemType, customData)
+
+        when(itemType) {
+            CustomItemType.ITEM -> customData.customItemData =  customUCIDecoder<UCICustomItemData>(currentYaml)
+            CustomItemType.KEYCARD -> customData.customKeycardData =  customUCIDecoder<UCICustomKeycardData>(currentYaml)
+            CustomItemType.ARMOR -> customData.customArmorData =  customUCIDecoder<UCICustomArmorData>(currentYaml)
+            CustomItemType.WEAPON -> customData.customWeaponData =  customUCIDecoder<UCICustomWeaponData>(currentYaml)
+            CustomItemType.MEDKIT -> customData.customMedkitDat =  customUCIDecoder<UCICustomMedkitData>(currentYaml)
+            CustomItemType.PAINKILLERS -> customData.customPainkillersData =  customUCIDecoder<UCICustomPainkillersData>(currentYaml)
+            CustomItemType.JAILBIRD -> customData.customJailbirdData =  customUCIDecoder<UCICustomJailbirdData>(currentYaml)
+            CustomItemType.EXPLOSIVE_GRENADE -> customData.customExplosiveGrenadeData =  customUCIDecoder<UCICustomExplosiveGrenadeData>(currentYaml)
+            CustomItemType.FLASH_GRENADE -> customData.customFlashGrenadeData =  customUCIDecoder<UCICustomFlashGrenadeData>(currentYaml)
+            CustomItemType.ADRENALINE -> customData.customAdrenalineData =  customUCIDecoder<UCICustomAdrenalineData>(currentYaml)
+            CustomItemType.SCP_ITEM -> return retrieveCustomScpItemData(defaultItemType, customData)
         }
+
+        return customData
     }
 
     inline fun <reified T> toCustomData(defaultItemType: ItemType, itemType: CustomItemType, customData: T): UncomplicatedCustomItem {
-        val yaml = Yaml.default.encodeToString<T>(customData)
+        val currentYaml = Yaml(configuration = YamlConfiguration(strictMode = false)).encodeToString<T>(customData)
 
-        return customUCIDecoder<UncomplicatedCustomItem>(yaml)
+        return customUCIDecoder<UncomplicatedCustomItem>(currentYaml)
     }
 
-    private fun retrieveCustomScpItemData(itemType: ItemType, customData: UncomplicatedCustomItemData): Any? {
-        val yaml = Yaml.default.encodeToString<UncomplicatedCustomItemData>(customData)
+    private fun retrieveCustomScpItemData(itemType: ItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
+        val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData)
 
-        return when(itemType) {
-            ItemType.SCP500 -> customUCIDecoder<UCICustomScp500Data>(yaml)
-            ItemType.SCP207 -> customUCIDecoder<UCICustomScp207>(yaml)
-            ItemType.SCP018 -> customUCIDecoder<UCICustomScp018Data>(yaml)
-            ItemType.SCP2176 -> customUCIDecoder<UCICustomScp217Data>(yaml)
-            ItemType.SCP244a -> customUCIDecoder<UCICustomScp244Data>(yaml)
-            ItemType.SCP244b -> customUCIDecoder<UCICustomScp244Data>(yaml)
-            ItemType.SCP1853 -> customUCIDecoder<UCICustomScp1853Data>(yaml)
-            ItemType.SCP1576 -> customUCIDecoder<UCICustomScp1576Data>(yaml)
+        when(itemType) {
+            ItemType.SCP500 -> customData.customScp500Data = customUCIDecoder<UCICustomScp500Data>(currentYaml)
+            ItemType.SCP207 -> customData.customScp207Data = customUCIDecoder<UCICustomScp207>(currentYaml)
+            ItemType.SCP018 -> customData.customScp018Data = customUCIDecoder<UCICustomScp018Data>(currentYaml)
+            ItemType.SCP2176 -> customData.customScp2176Data = customUCIDecoder<UCICustomScp217Data>(currentYaml)
+            ItemType.SCP244a -> customData.customScp244Data = customUCIDecoder<UCICustomScp244Data>(currentYaml)
+            ItemType.SCP244b -> customData.customScp244Data = customUCIDecoder<UCICustomScp244Data>(currentYaml)
+            ItemType.SCP1853 -> customData.customScp1853Data = customUCIDecoder<UCICustomScp1853Data>(currentYaml)
+            ItemType.SCP1576 -> customData.customScp1576Data = customUCIDecoder<UCICustomScp1576Data>(currentYaml)
             else -> {
                 null
             }
         }
+
+        return customData
     }
 }

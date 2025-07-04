@@ -52,7 +52,7 @@ data class UncomplicatedCustomItem(
     val badgeName: String,
     @SerialName("badge_color")
     val badgeColor: String,
-    val weight: Float,
+    val weight: Float? = null,
     val reusable: Boolean? = null,
     val item: ItemType,
     val scale: Vector3,
@@ -65,42 +65,42 @@ data class UncomplicatedCustomItem(
     val customItemType: CustomItemType,
     // Custom Item Data Classes
     @Transient
-    val customItemData: UCICustomItemData? = null,
+    var customItemData: UCICustomItemData? = null,
     @Transient
-    val customKeycardData: UCICustomKeycardData? = null,
+    var customKeycardData: UCICustomKeycardData? = null,
     @Transient
-    val customArmorData: UCICustomArmorData? = null,
+    var customArmorData: UCICustomArmorData? = null,
     @Transient
-    val customWeaponData: UCICustomWeaponData? = null,
+    var customWeaponData: UCICustomWeaponData? = null,
     @Transient
-    val customMedkitDat: UCICustomMedkitData? = null,
+    var customMedkitDat: UCICustomMedkitData? = null,
     @Transient
-    val customPainkillersData: UCICustomPainkillersData? = null,
+    var customPainkillersData: UCICustomPainkillersData? = null,
     @Transient
-    val customJailbirdData: UCICustomJailbirdData? = null,
+    var customJailbirdData: UCICustomJailbirdData? = null,
     @Transient
-    val customExplosiveGrenadeData: UCICustomExplosiveGrenadeData? = null,
+    var customExplosiveGrenadeData: UCICustomExplosiveGrenadeData? = null,
     @Transient
-    val customFlashGrenadeData: UCICustomFlashGrenadeData? = null,
+    var customFlashGrenadeData: UCICustomFlashGrenadeData? = null,
     @Transient
-    val customAdrenalineData: UCICustomAdrenalineData? = null,
+    var customAdrenalineData: UCICustomAdrenalineData? = null,
     // Custom Scp Item Data Classes
     @Transient
-    val customScp500Data: UCICustomScp500Data? = null,
+    var customScp500Data: UCICustomScp500Data? = null,
     @Transient
-    val customScp207Data: UCICustomScp207? = null,
+    var customScp207Data: UCICustomScp207? = null,
     @Transient
-    val custom018Data: UCICustomScp018Data? = null,
+    var customScp018Data: UCICustomScp018Data? = null,
     @Transient
-    val customScp2176Data: UCICustomScp217Data? = null,
+    var customScp2176Data: UCICustomScp217Data? = null,
     @Transient
-    val customScp244Data: UCICustomScp244Data? = null,
+    var customScp244Data: UCICustomScp244Data? = null,
     @Transient
-    val customScp1853Data: UCICustomScp1853Data? = null,
+    var customScp1853Data: UCICustomScp1853Data? = null,
     @Transient
-    val customScp1576Data: UCICustomScp1576Data? = null,
+    var customScp1576Data: UCICustomScp1576Data? = null,
     @Transient
-    val customScp127Data: UCICustomScp127Data? = null,
+    var customScp127Data: UCICustomScp127Data? = null,
     // Custom Item Data
     @SerialName("custom_data")
     val customData: UncomplicatedCustomItemData,
@@ -112,7 +112,7 @@ data class UncomplicatedCustomItemSpawn(
     val doSpawn: Boolean,
     val count: Int,
     @SerialName("pedestal_spawn")
-    val pedestalSpawn: Boolean,
+    val pedestalSpawn: Boolean? = null,
     val coords: List<Vector3>,
     @SerialName("dynamic_spawn")
     val dynamicSpawn: List<UncomplicatedCustomItemDynamicSpawn>,
@@ -135,31 +135,31 @@ data class UncomplicatedCustomItemDynamicSpawn(
 @Serializable
 data class UncomplicatedCustomItemFlagSettings(
     @SerialName("item_glow_settings")
-    val itemGlowSettings: List<UncomplicatedCustomItemGlowSettings>,
+    val itemGlowSettings: List<UncomplicatedCustomItemGlowSettings>? = null,
     @SerialName("life_steal_settings")
-    val lifeStealSettings: List<UncomplicatedCustomItemLifeStealSettings>,
+    val lifeStealSettings: List<UncomplicatedCustomItemLifeStealSettings>? = null,
     @SerialName("effect_settings")
-    val effectSettings: List<UncomplicatedCustomItemEffectSettings>,
+    val effectSettings: List<UncomplicatedCustomItemEffectSettings>? = null,
     @SerialName("audio_settings")
-    val audioSettings: List<UncomplicatedCustomItemAudioSettings>,
+    val audioSettings: List<UncomplicatedCustomItemAudioSettings>? = null,
     @SerialName("explosive_bullets_settings")
-    val explosiveBulletsSettings: List<UncomplicatedCustomItemExplosiveBulletsSettings>,
+    val explosiveBulletsSettings: List<UncomplicatedCustomItemExplosiveBulletsSettings>? = null,
     @SerialName("spawn_item_when_detonated_settings")
-    val spawnItemWhenDetonatedSettings: List<UncomplicatedCustomItemSpawnItemWhenDetonatedSettings>,
+    val spawnItemWhenDetonatedSettings: List<UncomplicatedCustomItemSpawnItemWhenDetonatedSettings>? = null,
     @SerialName("cluster_settings")
-    val clusterSettings: List<UncomplicatedCustomItemClusterSettings>,
+    val clusterSettings: List<UncomplicatedCustomItemClusterSettings>? = null,
     @SerialName("switch_role_on_use_settings")
-    val switchRoleOnUseSettings: List<UncomplicatedCustomItemSwitchRoleOnUseSettings>,
+    val switchRoleOnUseSettings: List<UncomplicatedCustomItemSwitchRoleOnUseSettings>? = null,
     @SerialName("die_on_drop_settings")
-    val dieOnDropSettings: List<UncomplicatedCustomItemDieOnDropSettings>,
+    val dieOnDropSettings: List<UncomplicatedCustomItemDieOnDropSettings>? = null,
     @SerialName("cant_drop_settings")
-    val cantDropSettings: List<UncomplicatedCustomItemCantDropSettings>,
+    val cantDropSettings: List<UncomplicatedCustomItemCantDropSettings>? = null,
     @SerialName("disguise_settings")
-    val disguiseSettings: List<UncomplicatedCustomItemDisguiseSettings>,
+    val disguiseSettings: List<UncomplicatedCustomItemDisguiseSettings>? = null,
     @SerialName("craftable_settings")
-    val craftableSettings: List<UncomplicatedCustomItemCraftableSettings>,
+    val craftableSettings: List<UncomplicatedCustomItemCraftableSettings>? = null,
     @SerialName("die_on_use_settings")
-    val dieOnUseSettings: List<UncomplicatedCustomItemDieOnUseSettings>,
+    val dieOnUseSettings: List<UncomplicatedCustomItemDieOnUseSettings>? = null,
     @SerialName("heal_on_kill_settings")
-    val healOnKillSettings: List<UncomplicatedCustomItemHealOnKillSettings>,
+    val healOnKillSettings: List<UncomplicatedCustomItemHealOnKillSettings>? = null,
 )

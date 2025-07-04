@@ -17,12 +17,12 @@
 package io.github.vxrpenter.ucs
 
 import com.charleskorn.kaml.Yaml
+import com.charleskorn.kaml.YamlConfiguration
 import io.github.vxrpenter.ucs.enums.PluginLoader
 import io.github.vxrpenter.ucs.exceptions.CouldNotLocateFileException
 import io.github.vxrpenter.ucs.exceptions.FileIsNotDirectoryException
 import io.github.vxrpenter.ucs.uci.UncomplicatedCustomItems
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItem
-import io.github.vxrpenter.ucs.ucr.data.UncomplicatedCustomRole
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import java.io.File
@@ -47,6 +47,8 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      * @return T as the entered object
      */
     inline fun <reified T> get(name: String, loader: PluginLoader): T {
+        val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
+
         // Get the filepath
         val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
 
@@ -58,11 +60,11 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
 
         // Serialize the found file to return it to the user
         if (currentFile == null) throw CouldNotLocateFileException("Failed to locate configuration file(s)", Throwable("No configuration file found in directory"))
-        var decodedYaml = Yaml.default.decodeFromString<T>(currentFile.readText())
+        var decodedYaml = yaml.decodeFromString<T>(currentFile.readText())
 
-        if (UncomplicatedCustomItem is T) {
-            val yaml = decodedYaml as UncomplicatedCustomItem
-            decodedYaml = UncomplicatedCustomItems().toSplittetData(yaml.item, yaml.customItemType, yaml.customData) as T
+        if (UncomplicatedCustomItem::class.simpleName == T::class.simpleName) {
+            val currentYaml = decodedYaml as UncomplicatedCustomItem
+            decodedYaml = UncomplicatedCustomItems().toSplittetData(currentYaml.item, currentYaml.customItemType, currentYaml) as T
         }
 
         return decodedYaml
@@ -80,6 +82,8 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      * @return a list of T as the entered object
      */
     inline fun <reified T> getAll(loader: PluginLoader): List<T> {
+        val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
+
         // Get the filepath
         val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
 
@@ -95,11 +99,11 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
         // Serialize the found files to return them to the user
         val configurationList = emptyList<T>().toMutableList()
         for (file in fileList) {
-            var decodedYaml = Yaml.default.decodeFromString<T>(file.readText())
+            var decodedYaml = yaml.decodeFromString<T>(file.readText())
 
-            if (UncomplicatedCustomItem is T) {
-                val yaml = decodedYaml as UncomplicatedCustomItem
-                decodedYaml = UncomplicatedCustomItems().toSplittetData(yaml.item, yaml.customItemType, yaml.customData) as T
+            if (UncomplicatedCustomItem::class.simpleName == T::class.simpleName) {
+                val currentYaml = decodedYaml as UncomplicatedCustomItem
+                decodedYaml = UncomplicatedCustomItems().toSplittetData(currentYaml.item, currentYaml.customItemType, currentYaml) as T
                 continue
             }
             configurationList.add(decodedYaml)
@@ -121,6 +125,8 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      * @param loader The loader that the plugin is installed with
      */
     inline fun <reified T> set(configuration: T, filename: String, loader: PluginLoader) {
+        val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
+
         // Get the filepath
         val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
 
@@ -133,14 +139,14 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
         // Check if there is already an existing configuration file for overwriting available
         for (file in fileList) {
             if (file.name.replace(".yml", "") != filename.replace(".yml", "")) continue
-            file.writeText(Yaml.default.encodeToString<T>(configuration))
+            file.writeText(yaml.encodeToString<T>(configuration))
             return
         }
 
         // Create a new file and write the new content in it
         val file = Path("$path/$filename.yml")
         file.createFile()
-        file.writeText(Yaml.default.encodeToString<T>(configuration))
+        file.writeText(yaml.encodeToString<T>(configuration))
     }
 
     /**
@@ -160,9 +166,11 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      * @param loader The loader that the plugin is installed with
      */
     inline fun <reified T> setAll(configurations: HashMap<String, T>, loader: PluginLoader) {
+        val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
+
         // Get the filepath
         val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
-        
+
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
         //Get a list of configuration files in the folder for checking for existing configuration
@@ -173,7 +181,7 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
         for (file in fileList) {
             val mapValue = configurations[file.name.replace(".yml", "")]
             if (mapValue == null) continue
-            file.writeText(Yaml.default.encodeToString<T>(mapValue))
+            file.writeText(yaml.encodeToString<T>(mapValue))
             return
         }
 
@@ -184,7 +192,7 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
 
             val file = Path("$path/$fileName.yml")
             file.createFile()
-            file.writeText(Yaml.default.encodeToString<T>(configuration))
+            file.writeText(yaml.encodeToString<T>(configuration))
         }
     }
 }
