@@ -102,7 +102,10 @@ enum class EffectType(val effect: String) {
     @SerialName("Strangled")
     STRANGLED("Strangled"),
     @SerialName("Ghostly")
-    GHOSTLY("Ghostly");
+    GHOSTLY("Ghostly"),
+    // Additional Items for UncomplicatedCustomItems (Exiled and LabAPI)
+    @SerialName("None")
+    NONE("None");
 
     companion object {
         /**
