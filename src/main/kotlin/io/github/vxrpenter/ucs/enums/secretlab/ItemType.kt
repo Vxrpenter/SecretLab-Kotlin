@@ -21,6 +21,10 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 enum class ItemType(val id: Int) {
+    // UncomplicatedCustomItems
+    @SerialName("Normal")
+    NORMAL(-2),
+    // UncomplicatedCustomItems
     @SerialName("None")
     NONE(-1),
     @SerialName("KeycardJanitor")
