@@ -17,7 +17,9 @@
 package io.github.vxrpenter.ucs.uci.enums
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 enum class ItemEvents(val event: String) {
     @SerialName("Command")
     COMMAND("Command"),

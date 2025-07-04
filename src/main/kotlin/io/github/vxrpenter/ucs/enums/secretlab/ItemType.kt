@@ -134,7 +134,21 @@ enum class ItemType(val id: Int) {
     @SerialName("SpecialCoal")
     SPECIAL_COAL(57),
     @SerialName("Tape")
-    TAPE(58);
+    TAPE(58),
+    @SerialName("DebugRagdollMover")
+    DEBUG_RAGDOLL_MOVER(59),
+    @SerialName("SurfaceAccessPass")
+    SURFACE_ACCESS_PASS(60),
+    @SerialName("GunSCP127")
+    GUN_SCP127(61),
+    @SerialName("KeycardCustomTaskForce")
+    KEYCARD_CUSTOM_TASK_FORCE(62),
+    @SerialName("KeycardCustomSite02")
+    KEYCARD_CUSTOM_SITE_O2(63),
+    @SerialName("KeycardCustomManagement")
+    KEYCARD_CUSTOM_MANAGEMENT(64),
+    @SerialName("KeycardCustomMetalCase")
+    KEYCARD_CUSTOM_METAL_CASE(65);
 
     companion object {
         /**
