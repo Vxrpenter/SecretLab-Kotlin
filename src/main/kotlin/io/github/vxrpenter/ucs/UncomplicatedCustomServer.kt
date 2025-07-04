@@ -48,8 +48,8 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      */
     inline fun <reified T> get(name: String, loader: PluginLoader): T {
         // Get the filepath
-        var path = getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
-        overridePath?.let { path = overridePath }
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
         // Check files in the filepath for configuration to serialize the correct file
@@ -81,8 +81,8 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      */
     inline fun <reified T> getAll(loader: PluginLoader): List<T> {
         // Get the filepath
-        var path = getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
-        overridePath?.let { path = overridePath }
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
         //Get a list of configuration files in the folder for serialization
@@ -122,8 +122,8 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      */
     inline fun <reified T> set(configuration: T, filename: String, loader: PluginLoader) {
         // Get the filepath
-        var path = getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
-        overridePath?.let { path = overridePath }
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
         //Get a list of configuration files in the folder for checking for existing configuration
@@ -161,8 +161,8 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
      */
     inline fun <reified T> setAll(configurations: HashMap<String, T>, loader: PluginLoader) {
         // Get the filepath
-        var path = getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
-        overridePath?.let { path = overridePath }
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+        
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
         //Get a list of configuration files in the folder for checking for existing configuration

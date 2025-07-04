@@ -26,8 +26,8 @@ data class UCICustomKeycardData(
     val admin: Int? = null,
     @SerialName("tint_color")
     val tintColor: String? = null,
-    @SerialName("permission_color")
-    val permissionColor: String? = null,
+    @SerialName("permissions_color")
+    val permissionsColor: String? = null,
     val name: String? = null,
     val label: String? = null,
     @SerialName("serial_number")

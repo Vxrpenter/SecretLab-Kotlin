@@ -27,7 +27,7 @@ data class UCICustomExplosiveGrenadeData(
     val scpDamageMultiplier: Float? = null,
     @SerialName("burn_duration")
     val burnDuration: Float? = null,
-    @SerialName("defeat_duration")
+    @SerialName("deafen_duration")
     val deafenDuration: Float? = null,
     @SerialName("concuss_duration")
     val concussDuration: Float? = null,

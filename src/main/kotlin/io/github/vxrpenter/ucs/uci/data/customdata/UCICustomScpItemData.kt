@@ -32,7 +32,7 @@ data class UCICustomScp207(
     val effect: EffectType? = null,
     val duration: Float? = null,
     val intensity: Byte? = null,
-    @SerialName("apply_207_effect")
+    @SerialName("apply207_effect")
     val apply207Effect: Boolean? = null,
     @SerialName("remove_item_after_use")
     val removeItemAfterUse: Boolean? = null,
@@ -40,6 +40,7 @@ data class UCICustomScp207(
 
 @Serializable
 data class UCICustomScp018Data(
+    @SerialName("friendly_fire_time")
     val friendlyFireTime: Float? = null,
     @SerialName("fuse_time")
     val fuseTime: Float? = null,
@@ -66,6 +67,7 @@ data class UCICustomScp1853Data(
     val effect: EffectType? = null,
     val duration: Float? = null,
     val intensity: Byte? = null,
+    @SerialName("apply1853_effect")
     val apply1853Effect: Boolean? = null,
     @SerialName("remove_item_after_use")
     val removeItemAfterUse: Boolean? = null,
@@ -129,6 +131,8 @@ data class UCICustomScp127Data(
     val maxBarrelAmmo: Int? = null,
     @SerialName("max_ammo")
     val maxAmmo: Int? = null,
+    @SerialName("max_magazine_ammo")
+    val maxMagazineAmmo: Int? = null,
     @SerialName("ammo_drain")
     val ammoDrain: Int? = null,
     val penetration: Float? = null,

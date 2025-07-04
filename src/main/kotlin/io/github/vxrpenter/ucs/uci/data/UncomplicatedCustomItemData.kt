@@ -63,7 +63,7 @@ data class UncomplicatedCustomItemData(
     val scpDamageMultiplier: Float? = null,
     @SerialName("burn_duration")
     val burnDuration: Float? = null,
-    @SerialName("defeat_duration")
+    @SerialName("deafen_duration")
     val deafenDuration: Float? = null,
     @SerialName("concuss_duration")
     val concussDuration: Float? = null,
@@ -143,8 +143,8 @@ data class UncomplicatedCustomItemData(
     val admin: Int? = null,
     @SerialName("tint_color")
     val tintColor: String? = null,
-    @SerialName("permission_color")
-    val permissionColor: String? = null,
+    @SerialName("permissions_color")
+    val permissionsColor: String? = null,
     val name: String? = null,
     val label: String? = null,
     @SerialName("serial_number")
@@ -207,7 +207,7 @@ data class UncomplicatedCustomItemData(
     // Here would be the value effect, but it already exists above. No values can be doubled, leave it as is.
     // Here would be the value duration, but it already exists above. No values can be doubled, leave it as is.
     // Here would be the value intensity, but it already exists above. No values can be doubled, leave it as is.
-    @SerialName("apply_207_effect")
+    @SerialName("apply207_effect")
     val apply207Effect: Boolean? = null,
     @SerialName("remove_item_after_use")
     val removeItemAfterUse: Boolean? = null,
@@ -219,6 +219,7 @@ data class UncomplicatedCustomItemData(
     //
     // SCP018Data
     //
+    @SerialName("friendly_fire_time")
     val friendlyFireTime: Float? = null,
     // Here would be the value fuseTime, but it already exists above. No values can be doubled, leave it as is.
     //
@@ -255,6 +256,7 @@ data class UncomplicatedCustomItemData(
     // Here would be the value effect, but it already exists above. No values can be doubled, leave it as is.
     // Here would be the value duration, but it already exists above. No values can be doubled, leave it as is.
     // Here would be the value intensity, but it already exists above. No values can be doubled, leave it as is.
+    @SerialName("apply1853_effect")
     val apply1853Effect: Boolean? = null,
     // Here would be the value removeItemAfterUse, but it already exists above. No values can be doubled, leave it as is.
     //
@@ -325,6 +327,8 @@ data class UncomplicatedCustomItemData(
     val maxBarrelAmmo: Int? = null,
     @SerialName("max_ammo")
     val maxAmmo: Int? = null,
+    @SerialName("max_magazine_ammo")
+    val maxMagazineAmmo: Int? = null,
     @SerialName("ammo_drain")
     val ammoDrain: Int? = null,
     val penetration: Float? = null,
