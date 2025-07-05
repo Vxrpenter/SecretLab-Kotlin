@@ -22,18 +22,18 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UCICustomExplosiveGrenadeData(
     @SerialName("max_radius")
-    val maxRadius: Float? = null,
+    val maxRadius: Float,
     @SerialName("scp_damage_multiplier")
-    val scpDamageMultiplier: Float? = null,
+    val scpDamageMultiplier: Float,
     @SerialName("burn_duration")
-    val burnDuration: Float? = null,
+    val burnDuration: Float,
     @SerialName("deafen_duration")
-    val deafenDuration: Float? = null,
+    val deafenDuration: Float,
     @SerialName("concuss_duration")
-    val concussDuration: Float? = null,
+    val concussDuration: Float,
     @SerialName("fuse_time")
-    val fuseTime: Float? = null,
+    val fuseTime: Float,
     @SerialName("pin_pull_time")
-    val pinPullTIme: Float? = null,
-    val repickable: Boolean? = null,
+    val pinPullTIme: Float,
+    val repickable: Boolean,
 )

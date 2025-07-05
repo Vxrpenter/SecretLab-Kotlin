@@ -22,20 +22,20 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UCICustomItemData(
-    val event: ItemEvents? = null,
+    val event: ItemEvents,
     val command: String? = null,
     @SerialName("cool_down")
-    val coolDown: Float? = null,
+    val coolDown: Float,
     @SerialName("console_message")
-    val consoleMessage: String? = null,
+    val consoleMessage: String,
     @SerialName("broadcast_message")
-    val broadcastMessage: String? = null,
+    val broadcastMessage: String,
     @SerialName("broadcast_duration")
-    val broadcastDuration: Short? = null,
+    val broadcastDuration: Short,
     @SerialName("hint_message")
-    val hintMessage: String? = null,
+    val hintMessage: String,
     @SerialName("hint_duration")
-    val hintDuration: Float? = null,
+    val hintDuration: Float,
     @SerialName("destroy_after_use")
-    val destroyAfterUse: Boolean? = null,
+    val destroyAfterUse: Boolean,
 )

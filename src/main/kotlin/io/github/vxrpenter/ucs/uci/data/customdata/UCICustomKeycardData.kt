@@ -21,24 +21,24 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UCICustomKeycardData(
-    val containment: Int? = null,
-    val armory: Int? = null,
-    val admin: Int? = null,
+    val containment: Int,
+    val armory: Int,
+    val admin: Int,
     @SerialName("tint_color")
-    val tintColor: String? = null,
+    val tintColor: String,
     @SerialName("permissions_color")
-    val permissionsColor: String? = null,
-    val name: String? = null,
-    val label: String? = null,
+    val permissionsColor: String,
+    val name: String,
+    val label: String,
     @SerialName("serial_number")
-    val serialNumber: String? = null,
+    val serialNumber: String,
     @SerialName("wear_detail")
-    val wearDetail: Byte? = null,
+    val wearDetail: Byte,
     @SerialName("label_color")
-    val labelColor: String? = null,
-    val rank: Int? = null,
+    val labelColor: String,
+    val rank: Int,
     @SerialName("one_time_use")
-    val oneTimeUse: Boolean? = null,
+    val oneTimeUse: Boolean,
     @SerialName("one_time_use_hint")
-    val oneTimeUseHint: String? = null,
+    val oneTimeUseHint: String,
 )

@@ -21,7 +21,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UCICustomMedkitData(
-    val health: Float? = null,
+    val health: Float,
     @SerialName("more_than_max")
-    val moreThanMax: Boolean? = null,
+    val moreThanMax: Boolean,
 )

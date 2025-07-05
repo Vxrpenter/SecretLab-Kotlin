@@ -22,13 +22,13 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UCICustomArmorData(
     @SerialName("head_protection")
-    val headProtection: Int? = null,
+    val headProtection: Int,
     @SerialName("body_protection")
-    val bodyProtection: Int? = null,
+    val bodyProtection: Int,
     @SerialName("remove_excess_on_drop")
-    val removeExcessOnDrop: Boolean? = null,
+    val removeExcessOnDrop: Boolean,
     @SerialName("stamina_use_multiplier")
-    val staminaUseMultiplier: Float? = null,
+    val staminaUseMultiplier: Float,
     @SerialName("stamina_regen_multiplier")
-    val staminaRegenMultiplier: Float? = null,
+    val staminaRegenMultiplier: Float,
 )

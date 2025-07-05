@@ -21,22 +21,22 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UCICustomWeaponData(
-    val damage: Float? = null,
+    val damage: Float,
     @SerialName("max_barrel_ammo")
     val maxBarrelAmmo: Int? = null,
     @SerialName("max_ammo")
-    val maxAmmo: Int? = null,
+    val maxAmmo: Int,
     @SerialName("max_magazine_amount")
     val maxMagazineAmount: Int? = null,
     @SerialName("ammo_drain")
     val ammoDrain: Int? = null,
-    val penetration: Float? = null,
-    val inaccuracy: Float? = null,
+    val penetration: Float,
+    val inaccuracy: Float,
     @SerialName("aiming_inaccuracy")
-    val aimingInaccuracy: Float? = null,
+    val aimingInaccuracy: Float,
     @SerialName("damage_falloff_distance")
-    val damageFalloffDistance: Float? = null,
-    val attachments: String? = null,
+    val damageFalloffDistance: Float,
+    val attachments: String,
     @SerialName("enable_friendly_fire")
-    val enableFriendlyFire: Boolean? = null
+    val enableFriendlyFire: Boolean,
 )

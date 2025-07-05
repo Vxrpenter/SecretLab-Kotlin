@@ -22,14 +22,14 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UCICustomFlashGrenadeData(
     @SerialName("minimal_duration_effect")
-    val minimalDurationEffect: Float? = null,
+    val minimalDurationEffect: Float,
     @SerialName("additional_blinded_effect")
-    val additionalBlindedEffect: Float? = null,
+    val additionalBlindedEffect: Float,
     @SerialName("surface_distance_intensifier")
-    val surfaceDistanceIntensifier: Float? = null,
+    val surfaceDistanceIntensifier: Float,
     @SerialName("fuse_time")
-    val fuseTime: Float? = null,
+    val fuseTime: Float,
     @SerialName("pin_pull_time")
-    val pinPullTIme: Float? = null,
-    val repickable: Boolean? = null,
+    val pinPullTIme: Float,
+    val repickable: Boolean,
 )

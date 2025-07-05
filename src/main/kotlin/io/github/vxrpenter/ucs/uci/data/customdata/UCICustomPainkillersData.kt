@@ -22,11 +22,11 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UCICustomPainkillersData(
     @SerialName("tick_heal")
-    val tickHeal: Float? = null,
+    val tickHeal: Float,
     @SerialName("time_before_start_healing")
-    val timeBeforeStartHealing: Float? = null,
+    val timeBeforeStartHealing: Float,
     @SerialName("tick_time")
-    val tickTime: Float? = null,
+    val tickTime: Float,
     @SerialName("total_healing")
-    val totalHealing: Float? = null,
+    val totalHealing: Float,
 )

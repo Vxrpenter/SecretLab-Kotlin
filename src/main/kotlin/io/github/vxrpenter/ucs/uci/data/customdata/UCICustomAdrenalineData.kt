@@ -20,9 +20,9 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class UCICustomAdrenalineData(
-    val amount: Float? = null,
-    val decay: Float? = null,
-    val efficacy: Float? = null,
-    val sustain: Float? = null,
-    val persistant: Boolean? = null,
+    val amount: Float,
+    val decay: Float,
+    val efficacy: Float,
+    val sustain: Float,
+    val persistant: Boolean,
 )

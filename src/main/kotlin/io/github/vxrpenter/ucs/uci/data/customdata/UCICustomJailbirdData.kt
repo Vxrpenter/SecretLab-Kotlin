@@ -22,12 +22,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class UCICustomJailbirdData(
     @SerialName("melee_damage")
-    val meleeDamage: Float? = null,
+    val meleeDamage: Float,
     @SerialName("charge_damage")
-    val chargeDamage: Float? = null,
+    val chargeDamage: Float,
     @SerialName("flash_duration")
-    val flashDuration: Float? = null,
-    val radius: Float? = null,
+    val flashDuration: Float,
+    val radius: Float,
     @SerialName("total_charges")
-    val totalCharges: Int? = null,
+    val totalCharges: Int,
 )

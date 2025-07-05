@@ -41,106 +41,106 @@ data class UCICustomScp207(
 @Serializable
 data class UCICustomScp018Data(
     @SerialName("friendly_fire_time")
-    val friendlyFireTime: Float? = null,
+    val friendlyFireTime: Float,
     @SerialName("fuse_time")
-    val fuseTime: Float? = null,
+    val fuseTime: Float,
 )
 
 @Serializable
 data class UCICustomScp217Data(
     @SerialName("fuse_time")
-    val fuseTime: Float? = null,
+    val fuseTime: Float,
 )
 
 @Serializable
 data class UCICustomScp244Data(
     @SerialName("activation_dot")
-    val activationDot: Float? = null,
-    val health: Float? = null,
+    val activationDot: Float,
+    val health: Float,
     @SerialName("max_diameter")
-    val maxDiameter: Float? = null,
-    val primed: Boolean? = null,
+    val maxDiameter: Float,
+    val primed: Boolean,
 )
 
 @Serializable
 data class UCICustomScp1853Data(
-    val effect: EffectType? = null,
-    val duration: Float? = null,
-    val intensity: Byte? = null,
+    val effect: EffectType,
+    val duration: Float,
+    val intensity: Byte,
     @SerialName("apply1853_effect")
-    val apply1853Effect: Boolean? = null,
+    val apply1853Effect: Boolean,
     @SerialName("remove_item_after_use")
-    val removeItemAfterUse: Boolean? = null,
+    val removeItemAfterUse: Boolean,
 )
 
 @Serializable
 data class UCICustomScp1576Data(
-    val effect: EffectType? = null,
-    val duration: Float? = null,
-    val intensity: Byte? = null,
+    val effect: EffectType,
+    val duration: Float,
+    val intensity: Byte,
 )
 
 @Serializable
 data class UCICustomScp127Data(
     @SerialName("give_hume_shield")
-    val giveHumeShield: Boolean? = null,
+    val giveHumeShield: Boolean,
     @SerialName("tier1_bullet_fire_rate")
-    val tier1BulletFireRate: Float? = null,
+    val tier1BulletFireRate: Float,
     @SerialName("tier2_bullet_fire_rate")
-    val tier2BulletFireRate: Float? = null,
+    val tier2BulletFireRate: Float,
     @SerialName("tier3_bullet_fire_rate")
-    val tier3BulletFireRate: Float? = null,
+    val tier3BulletFireRate: Float,
     @SerialName("tier1_bullet_regen_rate")
-    val tier1BulletRegenRate: Float? = null,
+    val tier1BulletRegenRate: Float,
     @SerialName("tier2_bullet_regen_rate")
-    val tier2BulletRegenRate: Float? = null,
+    val tier2BulletRegenRate: Float,
     @SerialName("tier3_bullet_regen_rate")
-    val tier3BulletRegenRate: Float? = null,
+    val tier3BulletRegenRate: Float,
     @SerialName("tier1_bullet_regen_post_fire_delay")
-    val tier1BulletRegenPostFireDelay: Float? = null,
+    val tier1BulletRegenPostFireDelay: Float,
     @SerialName("tier2_bullet_regen_post_fire_delay")
-    val tier2BulletRegenPostFireDelay: Float? = null,
+    val tier2BulletRegenPostFireDelay: Float,
     @SerialName("tier3_bullet_regen_post_fire_delay")
-    val tier3BulletRegenPostFireDelay: Float? = null,
+    val tier3BulletRegenPostFireDelay: Float,
     @SerialName("tier1_hume_shield_amount")
-    val tier1HumeShieldAmount: Float? = null,
+    val tier1HumeShieldAmount: Float,
     @SerialName("tier2_hume_shield_amount")
-    val tier2HumeShieldAmount: Float? = null,
+    val tier2HumeShieldAmount: Float,
     @SerialName("tier3_hume_shield_amount")
-    val tier3HumeShieldAmount: Float? = null,
+    val tier3HumeShieldAmount: Float,
     @SerialName("tier1_shield_regen_rate")
-    val tier1ShieldRegenRate: Float? = null,
+    val tier1ShieldRegenRate: Float,
     @SerialName("tier2_shield_regen_rate")
-    val tier2ShieldRegenRate: Float? = null,
+    val tier2ShieldRegenRate: Float,
     @SerialName("tier3_shield_regen_rate")
-    val tier3ShieldRegenRate: Float? = null,
+    val tier3ShieldRegenRate: Float,
     @SerialName("tier1_shield_decay_rate")
-    val tier1ShieldDecayRate: Float? = null,
+    val tier1ShieldDecayRate: Float,
     @SerialName("tier2_shield_decay_rate")
-    val tier2ShieldDecayRate: Float? = null,
+    val tier2ShieldDecayRate: Float,
     @SerialName("tier3_shield_decay_rate")
-    val tier3ShieldDecayRate: Float? = null,
+    val tier3ShieldDecayRate: Float,
     @SerialName("tier1_shield_on_damage_pause")
-    val tier1ShieldOnDamagePause: Float? = null,
+    val tier1ShieldOnDamagePause: Float,
     @SerialName("tier2_shield_on_damage_pause")
-    val tier2ShieldOnDamagePause: Float? = null,
+    val tier2ShieldOnDamagePause: Float,
     @SerialName("tier3_shield_on_damage_pause")
-    val tier3ShieldOnDamagePause: Float? = null,
-    val damage: Float? = null,
+    val tier3ShieldOnDamagePause: Float,
+    val damage: Float,
     @SerialName("max_barrel_ammo")
-    val maxBarrelAmmo: Int? = null,
+    val maxBarrelAmmo: Int,
     @SerialName("max_ammo")
-    val maxAmmo: Int? = null,
+    val maxAmmo: Int,
     @SerialName("max_magazine_ammo")
-    val maxMagazineAmmo: Int? = null,
+    val maxMagazineAmmo: Int,
     @SerialName("ammo_drain")
-    val ammoDrain: Int? = null,
-    val penetration: Float? = null,
-    val inaccuracy: Float? = null,
+    val ammoDrain: Int,
+    val penetration: Float,
+    val inaccuracy: Float,
     @SerialName("aiming_inaccuracy")
-    val aimingInaccuracy: Float? = null,
+    val aimingInaccuracy: Float,
     @SerialName("damage_falloff_distance")
-    val damageFalloffDistance: Float? = null,
+    val damageFalloffDistance: Float,
     @SerialName("mute_voice_lines")
-    val muteVoiceLines: Boolean? = null,
+    val muteVoiceLines: Boolean,
 )
