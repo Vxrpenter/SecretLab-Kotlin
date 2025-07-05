@@ -132,8 +132,6 @@ enum class UCIItemType(val id: Int) {
     @SerialName("Tape")
     TAPE(58),
     // Additional Items for UncomplicatedCustomItems (Exiled and LabAPI)
-    @SerialName("Normal")
-    NORMAL(999),
     @SerialName("DebugRagdollMover")
     DEBUG_RAGDOLL_MOVER(999),
     @SerialName("SurfaceAccessPass")
@@ -149,8 +147,7 @@ enum class UCIItemType(val id: Int) {
     @SerialName("KeycardCustomMetalCase")
     KEYCARD_CUSTOM_METAL_CASE(999),
     @SerialName("GunCom18")
-    GUN_COM18_LOWER(999),
-    UCI(999);
+    GUN_COM18_LOWER(999);
 
     companion object {
         /**
