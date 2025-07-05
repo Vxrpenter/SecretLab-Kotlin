@@ -19,7 +19,7 @@ package io.github.vxrpenter.ucs.data
 import kotlinx.serialization.Serializable
 
 /**
- * A data class to serialize the Vector3 from the C# language
+ * A data class to serialize the Vector3
  */
 @Serializable
 data class Vector3(
