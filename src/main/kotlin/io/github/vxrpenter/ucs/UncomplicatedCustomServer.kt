@@ -33,7 +33,13 @@ import kotlin.io.path.isDirectory
 import kotlin.io.path.writeText
 import kotlin.io.readText
 
-class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = null) {
+/**
+ * @param serverPath The path that the SCP: Secret Laboratory server is located at
+ * @param overridePath An absolute path that overrides all path queries and forces the functions to use this path instead
+ * @since 0.5.0
+ * @author Vxrpenter
+ */
+class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: Path? = null) {
     /**
      * Finds a specific UncomplicatedCustomServer's plugin's configuration file
      *
@@ -50,7 +56,7 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
         // Get the filepath
-        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath ?: Path("Error"))
 
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
@@ -85,7 +91,7 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
         // Get the filepath
-        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath?: Path("Error"))
 
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
@@ -127,7 +133,7 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
         // Get the filepath
-        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath?: Path("Error"))
 
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 
@@ -168,7 +174,7 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
         // Get the filepath
-        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath)
+        val path: Path = overridePath ?: getUncomplicatedCustomServerConfigurationPath<T>(loader, serverPath?: Path("Error"))
 
         if (!path.isDirectory()) throw FileIsNotDirectoryException("Failed to locate configuration file(s)", Throwable("Path for server files is not a directory (does not exist)"))
 

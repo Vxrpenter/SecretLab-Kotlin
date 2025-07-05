@@ -37,6 +37,7 @@ import kotlin.io.path.Path
  * @return T as the entered object
  */
 inline fun <reified T> getUncomplicatedCustomServerConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
+    if (serverPath == Path("Error")) throw NoConfigurationPathFound("Failed to locate configuration file(s)", Throwable("No possible path has been provided for config querying"))
     val exiledConfigPath = ".config/EXILED/Configs"
     val labApiConfigPath = ""
 
@@ -55,7 +56,6 @@ inline fun <reified T> getUncomplicatedCustomServerConfigurationPath(loader: Plu
     }
 
     path.root?.let { return path }
-    throw NoConfigurationPathFound("Failed to locate configuration file(s)",
-        Throwable("Wrong type has been inferred, available types are <UncomplicatedCustomRole>, <UncomplicatedCustomTeam> or <UncomplicatedCustomItem> "))
+    throw NoConfigurationPathFound("Failed to locate configuration file(s)", Throwable("Wrong type has been inferred, available types are <UncomplicatedCustomRole>, <UncomplicatedCustomTeam> or <UncomplicatedCustomItem> "))
 }
 
