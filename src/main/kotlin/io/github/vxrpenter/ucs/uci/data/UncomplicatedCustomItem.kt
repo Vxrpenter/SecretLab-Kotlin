@@ -86,7 +86,7 @@ data class UncomplicatedCustomItem(
     var customScp127Data: UCICustomScp127Data? = null,
     // Custom Item Data
     @SerialName("custom_data")
-    val customData: UncomplicatedCustomItemData,
+    var customData: UncomplicatedCustomItemData? = null,
 )
 
 @Serializable

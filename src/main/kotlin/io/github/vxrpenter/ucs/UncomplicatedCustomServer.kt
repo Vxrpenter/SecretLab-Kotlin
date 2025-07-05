@@ -104,7 +104,6 @@ class UncomplicatedCustomServer(val serverPath: Path, val overridePath: Path? = 
             if (UncomplicatedCustomItem::class.simpleName == T::class.simpleName) {
                 val currentYaml = decodedYaml as UncomplicatedCustomItem
                 decodedYaml = UncomplicatedCustomItems().toSplittetData(currentYaml.item, currentYaml.customItemType, currentYaml) as T
-                continue
             }
             configurationList.add(decodedYaml)
         }

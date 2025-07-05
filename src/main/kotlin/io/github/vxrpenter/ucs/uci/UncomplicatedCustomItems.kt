@@ -31,8 +31,7 @@ class UncomplicatedCustomItems {
     inline fun <reified T> customUCIDecoder(yaml: String): T = Yaml(configuration = YamlConfiguration(strictMode = false)).decodeFromString<T>(yaml)
 
     fun toSplittetData(defaultItemType: ItemType, itemType: CustomItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
-        val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData)
-
+        val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData!!)
 
         when(itemType) {
             CustomItemType.ITEM -> customData.customItemData =  customUCIDecoder<UCICustomItemData>(currentYaml)
@@ -48,17 +47,18 @@ class UncomplicatedCustomItems {
             CustomItemType.SCP_ITEM -> return retrieveCustomScpItemData(defaultItemType, customData)
         }
 
+        customData.customData = null
         return customData
     }
 
-    inline fun <reified T> toCustomData(defaultItemType: ItemType, itemType: CustomItemType, customData: T): UncomplicatedCustomItem {
+    inline fun <reified T> toCustomData(defaultItemType: ItemType, itemType: CustomItemType, customData: T): UncomplicatedCustomItemData {
         val currentYaml = Yaml(configuration = YamlConfiguration(strictMode = false)).encodeToString<T>(customData)
 
-        return customUCIDecoder<UncomplicatedCustomItem>(currentYaml)
+        return customUCIDecoder<UncomplicatedCustomItemData>(currentYaml)
     }
 
     private fun retrieveCustomScpItemData(itemType: ItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
-        val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData)
+        val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData!!)
 
         when(itemType) {
             ItemType.SCP500 -> customData.customScp500Data = customUCIDecoder<UCICustomScp500Data>(currentYaml)
