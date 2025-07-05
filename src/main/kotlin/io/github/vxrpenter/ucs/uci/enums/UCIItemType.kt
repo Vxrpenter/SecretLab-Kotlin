@@ -14,13 +14,13 @@
  * Note: This is no legal advice, please read the license conditions
  */
 
-package io.github.vxrpenter.ucs.enums.secretlab
+package io.github.vxrpenter.ucs.uci.enums
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-enum class ItemType(val id: Int) {
+enum class UCIItemType(val id: Int) {
     @SerialName("None")
     NONE(-1),
     @SerialName("KeycardJanitor")
@@ -131,9 +131,26 @@ enum class ItemType(val id: Int) {
     SPECIAL_COAL(57),
     @SerialName("Tape")
     TAPE(58),
-    // Additional Items
+    // Additional Items for UncomplicatedCustomItems (Exiled and LabAPI)
     @SerialName("Normal")
-    NORMAL(999);
+    NORMAL(999),
+    @SerialName("DebugRagdollMover")
+    DEBUG_RAGDOLL_MOVER(999),
+    @SerialName("SurfaceAccessPass")
+    SURFACE_ACCESS_PASS(999),
+    @SerialName("GunSCP127")
+    GUN_SCP127(999),
+    @SerialName("KeycardCustomTaskForce")
+    KEYCARD_CUSTOM_TASK_FORCE(999),
+    @SerialName("KeycardCustomSite02")
+    KEYCARD_CUSTOM_SITE_O2(999),
+    @SerialName("KeycardCustomManagement")
+    KEYCARD_CUSTOM_MANAGEMENT(999),
+    @SerialName("KeycardCustomMetalCase")
+    KEYCARD_CUSTOM_METAL_CASE(999),
+    @SerialName("GunCom18")
+    GUN_COM18_LOWER(999),
+    UCI(999);
 
     companion object {
         /**
@@ -143,7 +160,7 @@ enum class ItemType(val id: Int) {
          * @see io.github.vxrpenter.ucs.enums.secretlab.ItemType
          * @return the ItemType (nullable)
          */
-        fun findEnum(value: Int): ItemType? = ItemType.entries.find { it.id == value }
+        fun findEnum(value: Int): UCIItemType? = UCIItemType.entries.find { it.id == value }
 
         /**
          * Finds the specified ItemType from its enum
@@ -152,6 +169,6 @@ enum class ItemType(val id: Int) {
          * @see io.github.vxrpenter.ucs.enums.secretlab.ItemType
          * @return the ItemType (nullable)
          */
-        fun findValue(enum: ItemType): Int? = ItemType.entries.find { it.name == enum.name }?.id
+        fun findValue(enum: UCIItemType): Int? = UCIItemType.entries.find { it.name == enum.name }?.id
     }
 }

@@ -52,7 +52,8 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * @param loader The loader that the plugin is installed with
      * @return T as the entered object
      */
-    inline fun <reified T> get(name: String, loader: PluginLoader): T {
+    @Suppress("UNUSED_PARAMETER")
+    inline fun <reified T> get(name: String, loader: PluginLoader, returnRawUCICustomData: Boolean = false): T {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
         // Get the filepath
@@ -68,7 +69,7 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
         if (currentFile == null) throw CouldNotLocateFileException("Failed to locate configuration file(s)", Throwable("No configuration file found in directory"))
         var decodedYaml = yaml.decodeFromString<T>(currentFile.readText())
 
-        if (UncomplicatedCustomItem::class.simpleName == T::class.simpleName) {
+        if (UncomplicatedCustomItem::class.simpleName == T::class.simpleName && !returnRawUCICustomData) {
             val currentYaml = decodedYaml as UncomplicatedCustomItem
             decodedYaml = UncomplicatedCustomItems().toSplittetData(currentYaml.item, currentYaml.customItemType, currentYaml) as T
         }
@@ -87,7 +88,8 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * @param loader The loader that the plugin is installed with
      * @return a list of T as the entered object
      */
-    inline fun <reified T> getAll(loader: PluginLoader): List<T> {
+    @Suppress("UNUSED_PARAMETER")
+    inline fun <reified T> getAll(loader: PluginLoader, returnRawUCICustomData: Boolean = false): List<T> {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
         // Get the filepath
@@ -107,7 +109,7 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
         for (file in fileList) {
             var decodedYaml = yaml.decodeFromString<T>(file.readText())
 
-            if (UncomplicatedCustomItem::class.simpleName == T::class.simpleName) {
+            if (UncomplicatedCustomItem::class.simpleName == T::class.simpleName && !returnRawUCICustomData) {
                 val currentYaml = decodedYaml as UncomplicatedCustomItem
                 decodedYaml = UncomplicatedCustomItems().toSplittetData(currentYaml.item, currentYaml.customItemType, currentYaml) as T
             }
@@ -129,6 +131,7 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * @param filename The name of the file to be written to without an extension
      * @param loader The loader that the plugin is installed with
      */
+    @Suppress("UNUSED_PARAMETER")
     inline fun <reified T> set(configuration: T, filename: String, loader: PluginLoader) {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
@@ -154,6 +157,7 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
         file.writeText(yaml.encodeToString<T>(configuration))
     }
 
+
     /**
      * Writes a list (hashmap) of UncomplicatedCustomServer's plugin's configuration to the entered configuration folder
      *
@@ -170,6 +174,7 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * and the serialized configuration as the value
      * @param loader The loader that the plugin is installed with
      */
+    @Suppress("UNUSED_PARAMETER")
     inline fun <reified T> setAll(configurations: HashMap<String, T>, loader: PluginLoader) {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 

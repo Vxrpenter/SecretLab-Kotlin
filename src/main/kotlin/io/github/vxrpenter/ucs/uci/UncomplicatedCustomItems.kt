@@ -18,19 +18,22 @@ package io.github.vxrpenter.ucs.uci
 
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlConfiguration
-import io.github.vxrpenter.ucs.enums.secretlab.ItemType
+import io.github.vxrpenter.ucs.uci.data.CustomItemData
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItem
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItemData
 import io.github.vxrpenter.ucs.uci.data.customdata.*
 import io.github.vxrpenter.ucs.uci.enums.CustomItemType
+import io.github.vxrpenter.ucs.uci.enums.UCIItemType
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 
+@OptIn(CustomItemData::class)
 class UncomplicatedCustomItems {
     private val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
     inline fun <reified T> customUCIDecoder(yaml: String): T = Yaml(configuration = YamlConfiguration(strictMode = false)).decodeFromString<T>(yaml)
 
-    fun toSplittetData(defaultItemType: ItemType, itemType: CustomItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
+    @Suppress("UNUSED_PARAMETER")
+    fun toSplittetData(defaultItemType: UCIItemType, itemType: CustomItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
         val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData!!)
 
         when(itemType) {
@@ -51,24 +54,26 @@ class UncomplicatedCustomItems {
         return customData
     }
 
-    inline fun <reified T> toCustomData(defaultItemType: ItemType, itemType: CustomItemType, customData: T): UncomplicatedCustomItemData {
+    @Suppress("UNUSED_PARAMETER")
+    inline fun <reified T> toCustomData(defaultItemType: UCIItemType, itemType: CustomItemType, customData: T): UncomplicatedCustomItemData {
         val currentYaml = Yaml(configuration = YamlConfiguration(strictMode = false)).encodeToString<T>(customData)
 
         return customUCIDecoder<UncomplicatedCustomItemData>(currentYaml)
     }
 
-    private fun retrieveCustomScpItemData(itemType: ItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
+    @Suppress("UNUSED_PARAMETER")
+    private fun retrieveCustomScpItemData(itemType: UCIItemType, customData: UncomplicatedCustomItem): UncomplicatedCustomItem? {
         val currentYaml = yaml.encodeToString<UncomplicatedCustomItemData>(customData.customData!!)
 
         when(itemType) {
-            ItemType.SCP500 -> customData.customScp500Data = customUCIDecoder<UCICustomScp500Data>(currentYaml)
-            ItemType.SCP207 -> customData.customScp207Data = customUCIDecoder<UCICustomScp207>(currentYaml)
-            ItemType.SCP018 -> customData.customScp018Data = customUCIDecoder<UCICustomScp018Data>(currentYaml)
-            ItemType.SCP2176 -> customData.customScp2176Data = customUCIDecoder<UCICustomScp217Data>(currentYaml)
-            ItemType.SCP244a -> customData.customScp244Data = customUCIDecoder<UCICustomScp244Data>(currentYaml)
-            ItemType.SCP244b -> customData.customScp244Data = customUCIDecoder<UCICustomScp244Data>(currentYaml)
-            ItemType.SCP1853 -> customData.customScp1853Data = customUCIDecoder<UCICustomScp1853Data>(currentYaml)
-            ItemType.SCP1576 -> customData.customScp1576Data = customUCIDecoder<UCICustomScp1576Data>(currentYaml)
+            UCIItemType.SCP500 -> customData.customScp500Data = customUCIDecoder<UCICustomScp500Data>(currentYaml)
+            UCIItemType.SCP207 -> customData.customScp207Data = customUCIDecoder<UCICustomScp207>(currentYaml)
+            UCIItemType.SCP018 -> customData.customScp018Data = customUCIDecoder<UCICustomScp018Data>(currentYaml)
+            UCIItemType.SCP2176 -> customData.customScp2176Data = customUCIDecoder<UCICustomScp217Data>(currentYaml)
+            UCIItemType.SCP244a -> customData.customScp244Data = customUCIDecoder<UCICustomScp244Data>(currentYaml)
+            UCIItemType.SCP244b -> customData.customScp244Data = customUCIDecoder<UCICustomScp244Data>(currentYaml)
+            UCIItemType.SCP1853 -> customData.customScp1853Data = customUCIDecoder<UCICustomScp1853Data>(currentYaml)
+            UCIItemType.SCP1576 -> customData.customScp1576Data = customUCIDecoder<UCICustomScp1576Data>(currentYaml)
             else -> {
                 null
             }

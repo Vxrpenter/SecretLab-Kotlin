@@ -18,6 +18,7 @@ package io.github.vxrpenter.ucs.uci.data
 
 import io.github.vxrpenter.ucs.enums.secretlab.*
 import io.github.vxrpenter.ucs.uci.enums.EffectEvent
+import io.github.vxrpenter.ucs.uci.enums.UCIItemType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -67,7 +68,7 @@ data class UncomplicatedCustomItemExplosiveBulletsSettings(
 @Serializable
 data class UncomplicatedCustomItemSpawnItemWhenDetonatedSettings(
     @SerialName("item_type")
-    val itemType: ItemType? = null,
+    val itemType: UCIItemType? = null,
     @SerialName("item_id")
     val itemId: Int? = null,
     @SerialName("time_till_despawn")
@@ -79,7 +80,7 @@ data class UncomplicatedCustomItemSpawnItemWhenDetonatedSettings(
 @Serializable
 data class UncomplicatedCustomItemClusterSettings(
     @SerialName("item_to_spawn")
-    val itemToSpawn: ItemType,
+    val itemToSpawn: UCIItemType,
     @SerialName("amount_to_spawn")
     val amountToSpawn: Int? = null,
     @SerialName("scp_damage_multiplier")
@@ -129,7 +130,7 @@ data class UncomplicatedCustomItemCraftableSettings(
     @SerialName("knob_setting")
     val knobSetting: Scp914KnobSetting? = null,
     @SerialName("original_item")
-    val originalItem: ItemType? = null,
+    val originalItem: UCIItemType? = null,
     val chance: Int? = null
 )
 

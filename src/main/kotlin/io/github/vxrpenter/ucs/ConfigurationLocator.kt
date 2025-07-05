@@ -36,6 +36,7 @@ import kotlin.io.path.Path
  * @param serverPath The directory where the server is location e.g. `/home/serverUser/server/`
  * @return T as the entered object
  */
+@Suppress("UNUSED_PARAMETER")
 inline fun <reified T> getUncomplicatedCustomServerConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
     if (serverPath == Path("Error")) throw NoConfigurationPathFound("Failed to locate configuration file(s)", Throwable("No possible path has been provided for config querying"))
     val exiledConfigPath = ".config/EXILED/Configs"
