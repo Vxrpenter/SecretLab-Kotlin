@@ -18,11 +18,29 @@ package io.github.vxrpenter.ucs.uci.data.customdata
 
 import kotlinx.serialization.Serializable
 
+/**
+ * Defines the custom item's adrenaline custom data
+ */
 @Serializable
 data class UCICustomAdrenalineData(
+    /**
+     * The amount of ahp to be given to the custom item's holder.
+     */
     val amount: Float,
+    /**
+     * The rate/speed of the ahp's decay.
+     */
     val decay: Float,
+    /**
+     * The efficacy of the ahp.
+     */
     val efficacy: Float,
+    /**
+     * The delay before the ahp starts to decay.
+     */
     val sustain: Float,
+    /**
+     * Defines if the ahp is persistant (no decay being applied).
+     */
     val persistant: Boolean,
 )

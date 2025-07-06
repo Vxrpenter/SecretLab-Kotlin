@@ -19,14 +19,29 @@ package io.github.vxrpenter.ucs.uci.data.customdata
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Defines the custom item's painkillers custom data
+ */
 @Serializable
 data class UCICustomPainkillersData(
+    /**
+     * The health that will be granted to the holder every game tick.
+     */
     @SerialName("tick_heal")
     val tickHeal: Float,
+    /**
+     * The buffer time (after usage) that is waited until heal starts.
+     */
     @SerialName("time_before_start_healing")
     val timeBeforeStartHealing: Float,
+    /**
+     * The time between [tickHeal].
+     */
     @SerialName("tick_time")
     val tickTime: Float,
+    /**
+     * The total amount of health that can be granted.
+     */
     @SerialName("total_healing")
     val totalHealing: Float,
 )

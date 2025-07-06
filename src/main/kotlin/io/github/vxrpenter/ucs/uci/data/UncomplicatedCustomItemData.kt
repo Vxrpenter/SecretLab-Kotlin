@@ -28,6 +28,9 @@ import kotlinx.serialization.Serializable
 @Target(AnnotationTarget.CLASS)
 annotation class CustomItemData
 
+/**
+ * The raw custom data of a custom item.
+ */
 @CustomItemData
 @Serializable
 data class UncomplicatedCustomItemData(

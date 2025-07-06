@@ -19,16 +19,32 @@ package io.github.vxrpenter.ucs.uci.data.customdata
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Defines the custom item's armor custom data
+ */
 @Serializable
 data class UCICustomArmorData(
+    /**
+     * The armor's head protection.
+     */
     @SerialName("head_protection")
     val headProtection: Int,
+    /**
+     * The armor's body protection.
+     */
     @SerialName("body_protection")
     val bodyProtection: Int,
+    @Deprecated(message = "Marked by UCI Developers as 'Obsolete'", level = DeprecationLevel.WARNING)
     @SerialName("remove_excess_on_drop")
     val removeExcessOnDrop: Boolean,
+    /**
+     * The stamina being drained by the armor.
+     */
     @SerialName("stamina_use_multiplier")
     val staminaUseMultiplier: Float,
+    /**
+     * The stamina regen multiplier.
+     */
     @SerialName("stamina_regen_multiplier")
     val staminaRegenMultiplier: Float,
 )

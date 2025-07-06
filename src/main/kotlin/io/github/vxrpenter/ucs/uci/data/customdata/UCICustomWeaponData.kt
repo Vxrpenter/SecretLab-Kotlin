@@ -19,24 +19,60 @@ package io.github.vxrpenter.ucs.uci.data.customdata
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Defines the custom item's weapon custom data
+ */
 @Serializable
 data class UCICustomWeaponData(
+    /**
+     * The damage of the ammunition.
+     */
     val damage: Float,
+    /**
+     * The max amount of ammunition in the barrel.
+     */
     @SerialName("max_barrel_ammo")
     val maxBarrelAmmo: Int? = null,
+    /**
+     * The max amount of ammunition.
+     */
     @SerialName("max_ammo")
     val maxAmmo: Int,
+    /**
+     * The max amount of ammunition in the magazine.
+     */
     @SerialName("max_magazine_amount")
     val maxMagazineAmount: Int? = null,
+    /**
+     * The ammunition drained per shot.
+     */
     @SerialName("ammo_drain")
     val ammoDrain: Int? = null,
+    /**
+     * The penetration of the firearm.
+     */
     val penetration: Float,
+    /**
+     * The inaccuracy of the firearm.
+     */
     val inaccuracy: Float,
+    /**
+     * The inaccuracy of the firearm, while aiming.
+     */
     @SerialName("aiming_inaccuracy")
     val aimingInaccuracy: Float,
+    /**
+     * The distance at that the damage falls off.
+     */
     @SerialName("damage_falloff_distance")
     val damageFalloffDistance: Float,
+    /**
+     * The weapon attachments.
+     */
     val attachments: String,
+    /**
+     * Defines if the weapon can damage friendly teams.
+     */
     @SerialName("enable_friendly_fire")
     val enableFriendlyFire: Boolean,
 )

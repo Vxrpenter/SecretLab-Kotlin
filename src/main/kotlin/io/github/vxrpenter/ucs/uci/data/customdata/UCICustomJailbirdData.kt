@@ -19,15 +19,33 @@ package io.github.vxrpenter.ucs.uci.data.customdata
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
+/**
+ * Defines the custom item's jailbird custom data
+ */
 @Serializable
 data class UCICustomJailbirdData(
+    /**
+     * The damage the jailbird will apply on a melee attack.
+     */
     @SerialName("melee_damage")
     val meleeDamage: Float,
+    /**
+     * The damage the jailbird will apply on a charge attack.
+     */
     @SerialName("charge_damage")
     val chargeDamage: Float,
+    /**
+     * The duration the victim of the jailbird will be flashed.
+     */
     @SerialName("flash_duration")
     val flashDuration: Float,
+    /**
+     * The radius the jailbird's hit will register in.
+     */
     val radius: Float,
+    /**
+     * The total amount of jailbird charges.
+     */
     @SerialName("total_charges")
     val totalCharges: Int,
 )
