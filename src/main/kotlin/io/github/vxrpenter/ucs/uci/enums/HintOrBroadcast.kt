@@ -22,6 +22,7 @@ import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.JsonNames
 
 @Deprecated("Currently is not correctly working and therefore not implemented. There is  a possibility to remove this in the future.", level = DeprecationLevel.WARNING)
+@Suppress("DEPRECATION")
 @Serializable
 enum class HintOrBroadcast(val type: String) {
     @OptIn(ExperimentalSerializationApi::class)
