@@ -18,6 +18,7 @@ package io.github.vxrpenter.ucs
 
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlConfiguration
+import io.github.vxrpenter.annotations.Internal
 import io.github.vxrpenter.ucs.enums.PluginLoader
 import io.github.vxrpenter.ucs.exceptions.CouldNotLocateFileException
 import io.github.vxrpenter.ucs.exceptions.FileIsNotDirectoryException
@@ -39,6 +40,8 @@ import kotlin.io.readText
  * @since 0.5.0
  * @author Vxrpenter
  */
+@OptIn(Internal::class)
+@Suppress("UNUSED_PARAMETER")
 class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: Path? = null) {
     /**
      * Finds a specific UncomplicatedCustomServer's plugin's configuration file
@@ -52,7 +55,6 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * @param loader The loader that the plugin is installed with
      * @return T as the entered object
      */
-    @Suppress("UNUSED_PARAMETER")
     inline fun <reified T> get(name: String, loader: PluginLoader, returnRawUCICustomData: Boolean = false): T {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
@@ -88,7 +90,6 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * @param loader The loader that the plugin is installed with
      * @return a list of T as the entered object
      */
-    @Suppress("UNUSED_PARAMETER")
     inline fun <reified T> getAll(loader: PluginLoader, returnRawUCICustomData: Boolean = false): List<T> {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
@@ -131,7 +132,6 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * @param filename The name of the file to be written to without an extension
      * @param loader The loader that the plugin is installed with
      */
-    @Suppress("UNUSED_PARAMETER")
     inline fun <reified T> set(configuration: T, filename: String, loader: PluginLoader) {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 
@@ -174,7 +174,6 @@ class UncomplicatedCustomServer(val serverPath: Path? = null, val overridePath: 
      * and the serialized configuration as the value
      * @param loader The loader that the plugin is installed with
      */
-    @Suppress("UNUSED_PARAMETER")
     inline fun <reified T> setAll(configurations: HashMap<String, T>, loader: PluginLoader) {
         val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
 

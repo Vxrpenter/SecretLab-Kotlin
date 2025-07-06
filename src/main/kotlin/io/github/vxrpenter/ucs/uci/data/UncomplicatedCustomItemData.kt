@@ -16,17 +16,11 @@
 
 package io.github.vxrpenter.ucs.uci.data
 
+import io.github.vxrpenter.annotations.CustomItemData
 import io.github.vxrpenter.ucs.enums.secretlab.EffectType
 import io.github.vxrpenter.ucs.uci.enums.ItemEvents
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
-
-@RequiresOptIn(
-    message = "This implementation of CustomItemData is faulty bloated and can lead to multiple problems.",
-    level = RequiresOptIn.Level.ERROR
-)
-@Target(AnnotationTarget.CLASS)
-annotation class CustomItemData
 
 /**
  * The raw custom data of a custom item.

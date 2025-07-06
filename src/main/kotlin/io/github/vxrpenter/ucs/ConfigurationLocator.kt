@@ -16,6 +16,7 @@
 
 package io.github.vxrpenter.ucs
 
+import io.github.vxrpenter.annotations.Internal
 import io.github.vxrpenter.ucs.enums.PluginLoader
 import io.github.vxrpenter.ucs.exceptions.NoConfigurationPathFound
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItem
@@ -37,6 +38,7 @@ import kotlin.io.path.Path
  * @return T as the entered object
  */
 @Suppress("UNUSED_PARAMETER")
+@Internal
 inline fun <reified T> getUncomplicatedCustomServerConfigurationPath(loader: PluginLoader, serverPath: Path): Path {
     if (serverPath == Path("Error")) throw NoConfigurationPathFound("Failed to locate configuration file(s)", Throwable("No possible path has been provided for config querying"))
     val exiledConfigPath = ".config/EXILED/Configs"

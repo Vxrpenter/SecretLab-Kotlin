@@ -18,7 +18,8 @@ package io.github.vxrpenter.ucs.uci
 
 import com.charleskorn.kaml.Yaml
 import com.charleskorn.kaml.YamlConfiguration
-import io.github.vxrpenter.ucs.uci.data.CustomItemData
+import io.github.vxrpenter.annotations.CustomItemData
+import io.github.vxrpenter.annotations.Internal
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItem
 import io.github.vxrpenter.ucs.uci.data.UncomplicatedCustomItemData
 import io.github.vxrpenter.ucs.uci.data.customdata.*
@@ -28,6 +29,7 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 
 @OptIn(CustomItemData::class)
+@Internal
 class UncomplicatedCustomItems {
     private val yaml = Yaml(configuration = YamlConfiguration(strictMode = false))
     inline fun <reified T> customUCIDecoder(yaml: String): T = Yaml(configuration = YamlConfiguration(strictMode = false)).decodeFromString<T>(yaml)

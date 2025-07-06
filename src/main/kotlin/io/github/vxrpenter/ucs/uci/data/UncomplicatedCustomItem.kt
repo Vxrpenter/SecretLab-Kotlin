@@ -17,6 +17,7 @@
 package io.github.vxrpenter.ucs.uci.data
 
 import com.charleskorn.kaml.YamlScalar
+import io.github.vxrpenter.annotations.CustomItemData
 import io.github.vxrpenter.ucs.data.Vector3
 import io.github.vxrpenter.ucs.enums.secretlab.RoomType
 import io.github.vxrpenter.ucs.enums.secretlab.ZoneType
