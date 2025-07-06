@@ -41,8 +41,6 @@ data class UCICustomFlashGrenadeData(
      */
     @SerialName("surface_distance_intensifier")
     val surfaceDistanceIntensifier: Float,
-    @SerialName("concuss_duration")
-    val concussDuration: Float,
     /**
      * The fuse time until the grenade explodes.
      */

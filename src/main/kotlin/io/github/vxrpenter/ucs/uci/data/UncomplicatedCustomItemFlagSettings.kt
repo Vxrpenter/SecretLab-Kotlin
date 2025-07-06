@@ -20,7 +20,6 @@ import io.github.vxrpenter.ucs.enums.secretlab.*
 import io.github.vxrpenter.ucs.enums.CustomItem
 import io.github.vxrpenter.ucs.enums.Role
 import io.github.vxrpenter.ucs.uci.enums.EffectEvent
-import io.github.vxrpenter.ucs.uci.enums.HintOrBroadcast
 import io.github.vxrpenter.ucs.uci.enums.UCIItemType
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -242,11 +241,9 @@ data class UncomplicatedCustomItemDieOnDropSettings(
 data class UncomplicatedCustomItemCantDropSettings(
     /**
      * Defines if a hint or broadcast should be displayed.
-     *
-     * @see HintOrBroadcast
      */
     @SerialName("hint_or_broadcast")
-    val hintOrBroadcast: HintOrBroadcast? = null,
+    val hintOrBroadcast: String? = null,
     /**
      * The message to be displayed.
      */
