@@ -40,6 +40,7 @@ private data class Info(
     val modded: Boolean,
     val sort: String)
 
+@Suppress("UNUSED_PARAMETER")
 class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(ScpList::class.java)
     private val json = Json { ignoreUnknownKeys = true }

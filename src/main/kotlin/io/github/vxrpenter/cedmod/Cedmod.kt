@@ -33,6 +33,7 @@ import okhttp3.Response
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
+@Suppress("UNUSED_PARAMETER")
 class Cedmod(private val instanceUrl: String, private val apiKey: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(Cedmod::class.java)
     private val client: OkHttpClient = OkHttpClient.Builder()

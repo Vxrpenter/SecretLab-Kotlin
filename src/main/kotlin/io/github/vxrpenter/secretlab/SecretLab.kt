@@ -24,6 +24,7 @@ import okhttp3.Response
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
+@Suppress("UNUSED_PARAMETER")
 class SecretLab(private val apiKey: String, private val accountId: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(SecretLab::class.java)
     private val json = Json { ignoreUnknownKeys = true }
