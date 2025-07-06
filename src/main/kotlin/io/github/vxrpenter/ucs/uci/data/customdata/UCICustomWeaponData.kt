@@ -69,7 +69,7 @@ data class UCICustomWeaponData(
     /**
      * The weapon attachments.
      */
-    val attachments: String,
+    val attachments: String? = null,
     /**
      * Defines if the weapon can damage friendly teams.
      */

@@ -17,7 +17,9 @@
 package io.github.vxrpenter.ucs.uct.enum
 
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
+@Serializable
 enum class SpawnWave(val wave: String) {
     @SerialName("AfterWarhead")
     AFTER_WARHEAD("AfterWarhead"),

@@ -157,7 +157,7 @@ data class UncomplicatedCustomTeamSpawnConditions(
     /**
      * The item that has to be used to spawn the custom team.
      */
-    val usedItem: ItemType,
+    val usedItem: ItemType? = null,
     /**
      * The custom item that has to be used to spawn the custom team.
      */
@@ -171,14 +171,14 @@ data class UncomplicatedCustomTeamSpawnConditions(
      *
      * @see TargetScp
      */
-    val targetScp: TargetScp,
+    val targetScp: TargetScp? = null,
     /**
      * List of roles that have to be alive on round start for the custom team to spawn.
      */
-    val roleAliveOnRoundStart: List<RoleType>,
+    val roleAliveOnRoundStart: List<RoleType>? = null,
     /**
      * Defines a delay for the custom team's spawn.
      * Setting a SpawnDelay greater than 0 will not work when using NtfWave or ChaosWave!
      */
-    val spawnDelay: Float,
+    val spawnDelay: Float? = null,
 )

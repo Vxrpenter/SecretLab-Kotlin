@@ -224,7 +224,7 @@ data class UncomplicatedCustomRole(
      * @see <a href="https://docs.ucr.ucserver.it/custom-roles/configuration/escape-logic">
      */
     @SerialName("role_after_escape")
-    val roleAfterEscape: HashMap<String, String>,
+    val roleAfterEscape: HashMap<String, String>? = null,
 
     /**
      * The custom role's scale configuration. It consists of a normal vector with `x`,`y` and `z` coordinates.
@@ -251,7 +251,7 @@ data class UncomplicatedCustomRole(
      * For any customization, you can use the Unity syntax.
      */
     @SerialName("spawn_hint")
-    val spawnHint: String,
+    val spawnHint: String? = null,
 
     /**
      * The duration that the spawn hint stays on screen when the custom role is spawned.
