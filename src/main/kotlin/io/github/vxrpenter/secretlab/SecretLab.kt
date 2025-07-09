@@ -15,6 +15,7 @@
  */
 
 package io.github.vxrpenter.secretlab
+import io.github.vxrpenter.annotations.Internal
 import io.github.vxrpenter.secretlab.exceptions.CallFailureException
 import io.github.vxrpenter.secretlab.data.ServerInfo
 import kotlinx.serialization.json.Json
@@ -24,6 +25,7 @@ import okhttp3.Response
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
+@OptIn(Internal::class)
 @Suppress("UNUSED_PARAMETER")
 class SecretLab(private val apiKey: String, private val accountId: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(SecretLab::class.java)
@@ -90,6 +92,7 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
         }
     }
 
+    @Internal
     private fun getResponseTime(response: Response): Long {
         val sent = response.sentRequestAtMillis
         val received = response.receivedResponseAtMillis
@@ -97,8 +100,7 @@ class SecretLab(private val apiKey: String, private val accountId: String, readT
         return (received-sent)
     }
 
-
-
+    @Internal
     private fun logCall(requestUrl: String, successful: Boolean, exitCode: Int, statusMessage: String) {
         if (successful) {
             logger.debug("Request to $requestUrl was successful with exitcode $exitCode $statusMessage")

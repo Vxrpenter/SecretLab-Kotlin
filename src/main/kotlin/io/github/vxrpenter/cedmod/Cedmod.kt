@@ -19,6 +19,7 @@ package io.github.vxrpenter.cedmod
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
 import com.google.gson.JsonParser
+import io.github.vxrpenter.annotations.Internal
 import io.github.vxrpenter.cedmod.data.Player
 import io.github.vxrpenter.cedmod.enums.AppealStateType
 import io.github.vxrpenter.cedmod.enums.HandleAppealType
@@ -33,6 +34,7 @@ import okhttp3.Response
 import org.slf4j.LoggerFactory
 import java.util.concurrent.TimeUnit
 
+@OptIn(Internal::class)
 @Suppress("UNUSED_PARAMETER")
 class Cedmod(private val instanceUrl: String, private val apiKey: String, readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(Cedmod::class.java)
@@ -903,6 +905,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
         }
     }
 
+    @Internal
     private fun getResponseTime(response: Response): Long {
         val sent = response.sentRequestAtMillis
         val received = response.receivedResponseAtMillis
@@ -910,6 +913,7 @@ class Cedmod(private val instanceUrl: String, private val apiKey: String, readTi
         return (received-sent)
     }
 
+    @Internal
     private fun logCall(requestUrl: String, successful: Boolean, exitCode: Int, statusMessage: String) {
         if (successful) {
             logger.debug("Request to $requestUrl was successful with exitcode $exitCode $statusMessage")

@@ -16,6 +16,7 @@
 
 package io.github.vxrpenter.scplist
 
+import io.github.vxrpenter.annotations.Internal
 import io.github.vxrpenter.scplist.data.ScpListServers
 import io.github.vxrpenter.scplist.data.Server
 import io.github.vxrpenter.scplist.exceptions.CallFailureException
@@ -40,6 +41,7 @@ private data class Info(
     val modded: Boolean,
     val sort: String)
 
+@OptIn(Internal::class)
 @Suppress("UNUSED_PARAMETER")
 class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
     private val logger = LoggerFactory.getLogger(ScpList::class.java)
@@ -110,6 +112,7 @@ class ScpList(readTimeout: Long = 60, writeTimeout: Long = 60) {
         }
     }
 
+    @Internal
     private fun logCall(requestUrl: String, successful: Boolean, exitCode: Int, statusMessage: String) {
         if (successful) {
             logger.debug("Request to $requestUrl was successful with exitcode $exitCode $statusMessage")
